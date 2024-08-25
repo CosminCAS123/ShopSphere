@@ -1,0 +1,125 @@
+	<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="700" d:DesignHeight="450"
+			 Width="700" Height="450"
+	  Background="{StaticResource CharcoalGrayColor}"
+             x:Class="ShopSphere.Views.LoginView">
+	<Grid RowDefinitions="100,50,*,*,*,*,*"
+		  ColumnDefinitions="Auto, *">
+		
+		<Image Grid.Row="0"
+			   Grid.Column="0"
+			   Height="100"
+			   HorizontalAlignment="Left"
+			   
+			   Source="/Assets/Logo.png"/>
+		<TextBlock Grid.Row="0"
+				   VerticalAlignment="Center"
+				   Grid.Column="1"
+				   HorizontalAlignment="Left"
+				   FontSize="22"
+				   >
+			<Run Text="Shop" Foreground="{StaticResource TomatoColor}"/>
+			<!-- Tomato Color -->
+			<Run Text="Sphere" Foreground="{StaticResource SteelBlueColor}"/>
+			<!-- Steel Blue Color -->
+		</TextBlock>
+		<TextBlock Grid.Row="1"
+				   Foreground="{StaticResource TomatoColor}"
+				   Grid.ColumnSpan="2"
+				   Margin="40 , 0 , 0 , 0"
+				   FontSize="17"
+				  VerticalAlignment="Bottom"
+				   >
+			Sign in with account name
+		</TextBlock>
+		<TextBox Grid.Row="2" 
+				VerticalContentAlignment="Center"
+				 
+				 
+				 Grid.ColumnSpan="2" Margin="40 , 5 , 40 , 5">
+			
+		</TextBox>
+		<TextBlock Grid.Row="3"
+				   Grid.ColumnSpan="2"
+				   Foreground="{StaticResource TomatoColor}"
+				   Margin="40 , 0 , 0 , 10"
+				   FontSize="17"
+				  VerticalAlignment="Bottom"
+				   >
+			Password
+		</TextBlock>
+		<TextBox Grid.Row="4" FontSize="15.5" Grid.ColumnSpan="2" Margin="40 , -10 , 40 , 20">
+
+		</TextBox>
+		<CheckBox Grid.Row="5"
+				  VerticalAlignment="Top"
+				  Grid.ColumnSpan="2"
+				  HorizontalAlignment="Right"
+				  
+				  Foreground="{StaticResource TomatoColor}"
+				  
+				  Margin="0 , 0 , 40 ,0">Remember me</CheckBox>
+		<Button Grid.Row="6"
+				Grid.ColumnSpan="2"
+				HorizontalAlignment="Center"
+				VerticalAlignment="Top"
+				Height="40"
+				Margin="0 , 0 , 0 ,50"
+				
+				Foreground="White"
+				FontSize="18"
+				Width="150"
+				>
+			<Button.Background>
+				<LinearGradientBrush StartPoint="0,0" EndPoint="150,0">
+					<GradientStop Color="#4682B4" Offset="0"/>
+					<!-- Steel Blue -->
+					<GradientStop Color="#1E4C79" Offset="1"/>
+					<!-- Darker Blue for stronger contrast -->
+				</LinearGradientBrush>
+			</Button.Background>
+			<TextBlock Text="Sign in" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"/>
+		</Button>
+		<TextBlock TextDecorations="Underline"
+				   FontSize="14" 
+				   Text="Can't remember account?"
+				   Grid.Row="6"
+				   VerticalAlignment="Bottom"
+				   Margin="40 , 0 , 0 , 20"
+				   
+				   Grid.ColumnSpan="2">
+			<TextBlock.Styles>
+				<Style Selector="TextBlock">
+					<Setter Property="Foreground" Value="White"></Setter>
+				</Style>
+				<Style Selector="TextBlock:pointerover">
+					<Setter Property="Foreground" Value="{StaticResource SteelBlueColor}"/>
+					<!-- Change color on hover -->
+				</Style>
+			</TextBlock.Styles>
+			
+		</TextBlock>
+		<TextBlock TextDecorations="Underline"
+				   FontSize="14"
+				   Text="Don't have one? Create one for free!"
+				   Grid.Row="6"
+				   VerticalAlignment="Bottom"
+				   Margin="0 , 0 , 10 , 20"
+				   HorizontalAlignment="Right"
+				   Grid.ColumnSpan="2">
+			<TextBlock.Styles>
+				<Style Selector="TextBlock">
+					<Setter Property="Foreground" Value="White"></Setter>
+				</Style>
+				<Style Selector="TextBlock:pointerover">
+					<Setter Property="Foreground" Value="{StaticResource SteelBlueColor}"/>
+					<!-- Change color on hover -->
+				</Style>
+			</TextBlock.Styles>
+
+		</TextBlock>
+	</Grid>
+</UserControl>
