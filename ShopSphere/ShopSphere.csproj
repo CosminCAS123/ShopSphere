@@ -13,6 +13,11 @@
 
   
   <ItemGroup>
+    <AvaloniaResource Remove="Assets\FluentIcons.axaml" />
+  </ItemGroup>
+
+  
+  <ItemGroup>
     <None Remove="Assets\Logo.png" />
   </ItemGroup>
 
@@ -36,5 +41,11 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
 	  
+  </ItemGroup>
+
+  <ItemGroup>
+    <AvaloniaXaml Update="Assets\FluentIcons.axaml">
+      <SubType>Designer</SubType>
+    </AvaloniaXaml>
   </ItemGroup>
 </Project>

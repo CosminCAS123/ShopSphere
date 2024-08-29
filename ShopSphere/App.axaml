@@ -6,6 +6,7 @@
 
     <Application.Styles>
         <FluentTheme />
+		<StyleInclude Source="/Assets/FluentIcons.axaml"/>
     </Application.Styles>
 	<Application.Resources>
 		<!-- Define global color resources -->
