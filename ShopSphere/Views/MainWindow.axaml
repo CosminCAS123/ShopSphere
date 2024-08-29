@@ -7,9 +7,6 @@
         mc:Ignorable="d" d:DesignWidth="700" d:DesignHeight="450"
         x:Class="ShopSphere.Views.MainWindow"
         Icon="/Assets/Logo.png"
-		CanResize="False"
-		WindowStartupLocation="CenterScreen"
-		 
-        Title="ShopSphere">
+		>
         
 </Window>
