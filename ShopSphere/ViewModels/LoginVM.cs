@@ -14,7 +14,7 @@ namespace ShopSphere.ViewModels
         private string password;
         private bool showPassword = false;
        
-
+ 
         #endregion
 
         public string Username { get => this.username; set => this.RaiseAndSetIfChanged(ref this.username, value); }
