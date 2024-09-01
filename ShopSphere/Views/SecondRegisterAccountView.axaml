@@ -3,6 +3,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="700" d:DesignHeight="450"
+			 Width="700"
+			 Height="450"
              x:Class="ShopSphere.Views.SecondRegisterAccountView"
 			 Background="{StaticResource CharcoalGrayColor}">
 	<Grid RowDefinitions="100,*,*,100">
@@ -12,5 +14,66 @@
 			Good ! Now enter your phone number and your security PIN. The PIN will be 
 			of use if you forget your password!
 		</TextBlock>
+
+		<StackPanel Orientation="Horizontal"
+					Grid.Row="1"
+					Spacing="20"
+					Margin="160 , 0 , 0 , 0"
+					
+					>
+			<TextBlock VerticalAlignment="Center"
+					   HorizontalAlignment="Left"
+					   Foreground="White"> PIN: </TextBlock>
+			<StackPanel.Styles>
+				<Style Selector="TextBox">
+					<Setter Property="BorderThickness" Value="2.1"></Setter>
+					<Setter Property="BorderBrush" Value="{StaticResource TomatoColor}"></Setter>
+					<Setter Property="Height" Value="62"></Setter>
+					<Setter Property="FontSize" Value="35"></Setter>
+					<Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+					<Setter Property="MaxLength" Value="1"></Setter>
+					<Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+				</Style>
+			</StackPanel.Styles>
+			<TextBox></TextBox>
+			<TextBox></TextBox>
+			<TextBox></TextBox>
+			<TextBox></TextBox>
+		</StackPanel>
+		<TextBlock Grid.Row="2"
+				   FontSize="15"
+				   Margin="110 , 0 , 0 , 0"
+				   Foreground="White" VerticalAlignment="Center">Phone number:</TextBlock>
+		<StackPanel Grid.Row="2"
+					VerticalAlignment="Center"
+					HorizontalAlignment="Center"
+					Margin="20 , 0 , 0 , 0"
+					Orientation="Horizontal" Spacing="10"
+					>
+			
+			<ComboBox ></ComboBox>
+			<TextBox Width="150"></TextBox>
+		</StackPanel>
+		<Button Grid.Row="3"
+					
+					HorizontalAlignment="Center"
+					VerticalAlignment="Center"
+					Height="40"
+					Margin="0 , 0 , 0 ,0"
+				
+					Foreground="White"
+					FontSize="18"
+					Width="150"
+				>
+			<Button.Background>
+				<LinearGradientBrush StartPoint="0,0" EndPoint="150,0">
+					<GradientStop Color="#4682B4" Offset="0"/>
+					<!-- Steel Blue -->
+					<GradientStop Color="#1E4C79" Offset="1"/>
+					<!-- Darker Blue for stronger contrast -->
+				</LinearGradientBrush>
+			</Button.Background>
+			<TextBlock Text="Almost done!" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"/>
+		</Button>
 	</Grid>
 </UserControl>

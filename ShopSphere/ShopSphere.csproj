@@ -18,6 +18,13 @@
 
   
   <ItemGroup>
+    <None Remove="Assets\Flags\FnFlag.png" />
+    <None Remove="Assets\Flags\GmFlag.png" />
+    <None Remove="Assets\Flags\ItFlag.png" />
+    <None Remove="Assets\Flags\NtFlag.png" />
+    <None Remove="Assets\Flags\RoFlag.png" />
+    <None Remove="Assets\Flags\SpFlag.png" />
+    <None Remove="Assets\Flags\UkFlag.png" />
     <None Remove="Assets\Logo.png" />
   </ItemGroup>
 
