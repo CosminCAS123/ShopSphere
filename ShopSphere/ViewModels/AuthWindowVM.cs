@@ -10,7 +10,7 @@ namespace ShopSphere.ViewModels
     public class AuthWindowVM : ViewModelBase
     {
         private ViewModelBase authContent = null!;
-        public ViewModelBase AuthContent
+        public  ViewModelBase AuthContent
         {
             get => this.authContent;
             set => this.RaiseAndSetIfChanged(ref this.authContent, value);

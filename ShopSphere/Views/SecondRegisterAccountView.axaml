@@ -1,11 +1,13 @@
 <UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			 xmlns:vm ="clr-namespace:ShopSphere.ViewModels;assembly=ShopSphere"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="700" d:DesignHeight="450"
 			 Width="700"
 			 Height="450"
              x:Class="ShopSphere.Views.SecondRegisterAccountView"
+			 x:DataType="vm:SecondRegisterVM"
 			 Background="{StaticResource CharcoalGrayColor}">
 	<Grid RowDefinitions="100,*,*,100">
 		<TextBlock xml:space="preserve"
@@ -51,7 +53,22 @@
 					Orientation="Horizontal" Spacing="10"
 					>
 			
-			<ComboBox ></ComboBox>
+			<ComboBox Width="100" SelectedIndex="0" ItemsSource="{Binding PhoneNumbers}">
+				<ComboBox.ItemTemplate>
+					<DataTemplate>
+					<StackPanel Orientation="Horizontal"
+								HorizontalAlignment="Left"
+								VerticalAlignment="Center" Spacing="2"
+								
+								>
+						<Image Width="20" Height="15" Source="{Binding Uri}"
+							   ></Image>
+						<TextBlock Text="{Binding MaxDigits}"></TextBlock>
+					</StackPanel>
+					</DataTemplate>
+				</ComboBox.ItemTemplate>
+				
+			</ComboBox>
 			<TextBox Width="150"></TextBox>
 		</StackPanel>
 		<Button Grid.Row="3"
