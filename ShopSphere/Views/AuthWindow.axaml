@@ -4,10 +4,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 		xmlns:vm ="clr-namespace:ShopSphere.ViewModels;assembly=ShopSphere"
 		xmlns:views ="clr-namespace:ShopSphere.Views;assembly=ShopSphere"
+		xmlns:services ="clr-namespace:ShopSphere.Services;assembly=ShopSphere"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="ShopSphere.Views.AuthWindow"
 		Width="700" Height="450"
-		x:DataType="vm:AuthWindowVM"
+		x:DataType="services:NavigationService"
 		CanResize="False"
 		WindowStartupLocation="CenterScreen"
 		 

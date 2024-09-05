@@ -17,7 +17,7 @@ namespace ShopSphere.Extensions
             {
             collection.AddDbContext<ShopSphereContext>();
             collection.AddSingleton<IAuthNavigationService, NavigationService>();
-            collection.AddSingleton<AuthWindowVM>();
+           
             collection.AddTransient<LoginVM>();
             collection.AddTransient<RegisterVM>();
             collection.AddTransient<SecondRegisterVM>();

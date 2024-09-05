@@ -3,6 +3,7 @@ using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
 using Microsoft.Extensions.DependencyInjection;
 using ShopSphere.Extensions;
+using ShopSphere.Services;
 using ShopSphere.ViewModels;
 using ShopSphere.Views;
 
@@ -28,11 +29,12 @@ public partial class App : Application
         
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {
-            
 
+            var nav = services.GetService<IAuthNavigationService>();
+            nav.AuthNavigateTo<LoginVM>();
             desktop.MainWindow = new AuthWindow
             {
-                DataContext = services.GetService<AuthWindowVM>()
+                DataContext = nav
         };
         }
         

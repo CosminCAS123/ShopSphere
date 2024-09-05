@@ -12,6 +12,7 @@ namespace ShopSphere.Services
     {
         void AuthNavigateTo<TViewModel>() where TViewModel : ViewModelBase;
         User RegisteredUser { get; set; }
+        ViewModelBase AuthContent { get; set; }
 
     }
 }
