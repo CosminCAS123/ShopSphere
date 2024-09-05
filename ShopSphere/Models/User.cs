@@ -26,10 +26,15 @@ namespace ShopSphere.Models;
 
        public string? ProfilePictureUrl { get; set; }
 
-          
+       public int Age { get; set; }
 
-
-
-
+    public User()
+    {
+        
     }
+
+
+
+
+}
 

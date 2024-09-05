@@ -28,10 +28,12 @@ public partial class App : Application
         
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {
+            
+
             desktop.MainWindow = new AuthWindow
             {
-                DataContext = services.GetRequiredService<AuthWindowVM>()
-            };
+                DataContext = services.GetService<AuthWindowVM>()
+        };
         }
         
 

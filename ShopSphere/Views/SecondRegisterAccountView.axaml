@@ -3,6 +3,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 			 xmlns:vm ="clr-namespace:ShopSphere.ViewModels;assembly=ShopSphere"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:converters ="clr-namespace:ShopSphere.Converters;assembly=ShopSphere"
              mc:Ignorable="d" d:DesignWidth="700" d:DesignHeight="450"
 			 Width="700"
 			 Height="450"
@@ -52,6 +53,10 @@
 					Margin="20 , 0 , 0 , 0"
 					Orientation="Horizontal" Spacing="10"
 					>
+			<StackPanel.Resources>
+				<converters:StringToBitMapConverter x:Key="StringToBitMapConverter"/>
+		
+			</StackPanel.Resources>
 			
 			<ComboBox Width="100" SelectedIndex="0" ItemsSource="{Binding PhoneNumbers}">
 				<ComboBox.ItemTemplate>
@@ -61,9 +66,9 @@
 								VerticalAlignment="Center" Spacing="2"
 								
 								>
-						<Image Width="20" Height="15" Source="{Binding Uri}"
-							   ></Image>
-						<TextBlock Text="{Binding MaxDigits}"></TextBlock>
+						<Image Width="20" Height="15" Source="{Binding Uri , Converter={StaticResource StringToBitMapConverter}}">
+				   </Image>
+						<TextBlock Text="{Binding Prefix}"></TextBlock>
 					</StackPanel>
 					</DataTemplate>
 				</ComboBox.ItemTemplate>

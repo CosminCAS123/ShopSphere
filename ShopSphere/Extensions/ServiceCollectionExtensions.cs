@@ -1,5 +1,6 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿    using Microsoft.Extensions.DependencyInjection;
 using ShopSphere.Data;
+using ShopSphere.Services;
 using ShopSphere.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -15,9 +16,11 @@ namespace ShopSphere.Extensions
             public static void AddCommonServices(this IServiceCollection collection)
             {
             collection.AddDbContext<ShopSphereContext>();
-            collection.AddTransient<AuthWindowVM>();
-
+            collection.AddSingleton<IAuthNavigationService, NavigationService>();
+            collection.AddSingleton<AuthWindowVM>();
             collection.AddTransient<LoginVM>();
+            collection.AddTransient<RegisterVM>();
+            collection.AddTransient<SecondRegisterVM>();
             }
         }
     

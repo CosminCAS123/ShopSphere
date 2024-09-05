@@ -25,19 +25,19 @@ namespace ShopSphere.Helpers
             public static int Germany = 49;
             public static int Romania = 40;
             public static int Netherlands = 31;
-            public static int Spain = 34;
+            public static int Spain = 34; 
             public static int Italy = 39;
             public static int UnitedKingdom = 44;
         }
         public static class URIs 
         {
-            public static string France = "/Assets/Flags/FnFlag.png";
-            public static string Germany = "/Assets/Flags/GmFlag.png";
-            public static string Romania = "/Assets/Flags/RoFlag.png";
-            public static string Netherlands = "/Assets/Flags/NtFlag.png";
-            public static string Spain = "/Assets/Flags/SpFlag.png";
-            public static string Italy = "/Assets/Flags/ItFlag.png";
-            public static string UnitedKingdom = "/Assets/Flags/UkFlag.png";
+            public static string France = "avares://ShopSphere/Assets/Flags/FnFlag.png";
+            public static string Germany = "avares://ShopSphere/Assets/Flags/GmFlag.png";
+            public static string Romania = "avares://ShopSphere/Assets/Flags/RoFlag.png";
+            public static string Netherlands = "/avares://ShopSphereAssets/Flags/NtFlag.png";
+            public static string Spain = "avares://ShopSphere/Assets/Flags/SpFlag.png";
+            public static string Italy = "avares://ShopSphere/Assets/Flags/ItFlag.png";
+            public static string UnitedKingdom = "avares://ShopSphere/Assets/Flags/UkFlag.png";
 
         }
 

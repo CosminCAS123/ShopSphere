@@ -1,12 +1,14 @@
 <UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			 xmlns:vm ="clr-namespace:ShopSphere.ViewModels;assembly=ShopSphere"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="700" d:DesignHeight="450"
 			 Width="700"
 			 Height="450"
              x:Class="ShopSphere.Views.RegisterAccountView"
-			 Background="{StaticResource CharcoalGrayColor}">
+			 Background="{StaticResource CharcoalGrayColor}"
+			 x:DataType="vm:RegisterVM">
 	<Grid RowDefinitions="100 ,Auto, Auto , Auto , Auto , 100"
 		  >
 		<Grid.Styles>
@@ -49,7 +51,7 @@
 						VerticalAlignment="Center"
 						Height="40"
 						Margin="0 , 0 , 0 ,0"
-				
+				        Command="{Binding NextRegisterCommand}"
 						Foreground="White"
 						FontSize="18"
 						Width="130"
@@ -62,7 +64,8 @@
 					<!-- Darker Blue for stronger contrast -->
 				</LinearGradientBrush>
 			</Button.Background>
-			<TextBlock Text="Next step" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"/>
+			<TextBlock Text="Next step" HorizontalAlignment="Center" 
+					   VerticalAlignment="Center" Foreground="White"/>
 		</Button>
 	
 	</Grid>

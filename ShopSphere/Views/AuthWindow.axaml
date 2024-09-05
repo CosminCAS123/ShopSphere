@@ -18,6 +18,12 @@
 			<DataTemplate x:DataType="vm:LoginVM">
 				<views:LoginView></views:LoginView>
 			</DataTemplate>
+			<DataTemplate x:DataType="vm:RegisterVM">
+				<views:RegisterAccountView></views:RegisterAccountView>
+			</DataTemplate>
+			<DataTemplate x:DataType="vm:SecondRegisterVM">
+				<views:SecondRegisterAccountView></views:SecondRegisterAccountView>
+			</DataTemplate>
 		</ContentControl.DataTemplates>
 	</ContentControl>
      

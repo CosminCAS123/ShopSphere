@@ -1,4 +1,6 @@
-﻿using ReactiveUI;
+﻿using Microsoft.Extensions.DependencyInjection;
+using ReactiveUI;
+using ShopSphere.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,19 +17,33 @@ namespace ShopSphere.ViewModels
         private string lastName;
         private string emailAdress;
         private string age;
-        public string FirstName { get => this.FirstName; set => this.RaiseAndSetIfChanged(ref this.firstName, value); }
-        public string LastName { get => this.LastName; set => this.RaiseAndSetIfChanged(ref this.lastName, value); }
-        public string EmailAdress { get => this.EmailAdress ; set => this.RaiseAndSetIfChanged(ref this.emailAdress , value); }
-        public string Age { get => this.Age; set => this.RaiseAndSetIfChanged(ref this.age  , value); }
+        public string FirstName { get => this.firstName; set => this.RaiseAndSetIfChanged(ref this.firstName, value); }
+        public string LastName { get => this.lastName; set => this.RaiseAndSetIfChanged(ref this.lastName, value); }
+        public string EmailAdress { get => this.emailAdress ; set => this.RaiseAndSetIfChanged(ref this.emailAdress , value); }
+        public string Age { get => this.age; set => this.RaiseAndSetIfChanged(ref this.age  , value); }
 
         public ReactiveCommand<Unit , Unit> NextRegisterCommand { get; set; }
 
-        private ViewModelBase second_register;
-
-        public RegisterVM(SecondRegisterVM secondRegisterVM)
+        private IAuthNavigationService navigationService;
+        public RegisterVM(IAuthNavigationService nav)
         {
-            this.second_register = secondRegisterVM;
-            this.NextRegisterCommand = ReactiveCommand.Create();
+
+            this.navigationService = nav;
+            this.NextRegisterCommand = ReactiveCommand.CreateFromTask(goToSecondRegister);
+        }
+         
+        private async Task goToSecondRegister()
+        {
+            //VERIFICATION FIELD ??? !!!!
+            this.navigationService.RegisteredUser.FirstName = this.FirstName;
+            this.navigationService.RegisteredUser.LastName = this.LastName;
+            this.navigationService.RegisteredUser.EmailAdress = this.EmailAdress;
+            this.navigationService.RegisteredUser.Age = 3;
+
+            this.navigationService.AuthNavigateTo<SecondRegisterVM>();
+            //VERIFICATION FIELD ??? !!!!
+
+
         }
     }
 }
