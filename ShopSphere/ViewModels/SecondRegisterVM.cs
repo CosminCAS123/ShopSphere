@@ -1,9 +1,11 @@
 ﻿using ReactiveUI;
 using ShopSphere.Helpers;
 using ShopSphere.Models;
+using ShopSphere.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reactive;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -12,12 +14,15 @@ namespace ShopSphere.ViewModels;
     public class SecondRegisterVM : ViewModelBase
     {
 
-   
+     
 
     private List<PhoneNationality> phoneNationalities;
         public List<PhoneNationality> PhoneNumbers { get => this.phoneNationalities; set => this.RaiseAndSetIfChanged(ref this.phoneNationalities , value); }
-     
-        public SecondRegisterVM()
+
+        private IAuthNavigationService navigationService;
+ 
+        public ReactiveCommand<Unit, Unit> GoToNextRegisterCommand { get; set; }
+        public SecondRegisterVM(IAuthNavigationService nav)
         {
 
             this.PhoneNumbers = new List<PhoneNationality>
@@ -42,9 +47,14 @@ namespace ShopSphere.ViewModels;
 
 
     };
-
+            this.navigationService = nav;
+        this.GoToNextRegisterCommand = ReactiveCommand.Create(go_to_next_register);
 
         }
+
+    private void go_to_next_register() =>   this.navigationService.AuthNavigateTo<ThirdRegisterVM>();
+    
+
     }
 
 

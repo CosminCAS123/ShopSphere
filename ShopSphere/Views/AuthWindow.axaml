@@ -25,6 +25,9 @@
 			<DataTemplate x:DataType="vm:SecondRegisterVM">
 				<views:SecondRegisterAccountView></views:SecondRegisterAccountView>
 			</DataTemplate>
+			<DataTemplate x:DataType="vm:ThirdRegisterVM">
+				<views:ThirdRegisterAccountView></views:ThirdRegisterAccountView>
+			</DataTemplate>
 		</ContentControl.DataTemplates>
 	</ContentControl>
      
