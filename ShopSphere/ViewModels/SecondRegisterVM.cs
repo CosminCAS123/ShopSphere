@@ -25,7 +25,7 @@ namespace ShopSphere.ViewModels;
            
    
 
-       new PhoneNationality(PhoneResources.MaxDigits.France, PhoneResources.Prefixes.France, PhoneResources.URIs.France),
+       new PhoneNationality(PhoneResources.MaxDigits.France,  PhoneResources.Prefixes.France, PhoneResources.URIs.France),
 
        new PhoneNationality(PhoneResources.MaxDigits.Germany, PhoneResources.Prefixes.Germany, PhoneResources.URIs.Germany),
 

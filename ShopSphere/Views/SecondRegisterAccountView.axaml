@@ -58,7 +58,7 @@
 		
 			</StackPanel.Resources>
 			
-			<ComboBox Width="100" SelectedIndex="0" ItemsSource="{Binding PhoneNumbers}">
+			<ComboBox Width="100" SelectedIndex="4" ItemsSource="{Binding PhoneNumbers}">
 				<ComboBox.ItemTemplate>
 					<DataTemplate>
 					<StackPanel Orientation="Horizontal"
