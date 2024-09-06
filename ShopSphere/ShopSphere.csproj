@@ -18,6 +18,7 @@
 
   
   <ItemGroup>
+    <None Remove="Assets\DefaultPFP.png" />
     <None Remove="Assets\Flags\FnFlag.png" />
     <None Remove="Assets\Flags\GmFlag.png" />
     <None Remove="Assets\Flags\ItFlag.png" />
@@ -55,5 +56,9 @@
     <AvaloniaXaml Update="Assets\FluentIcons.axaml">
       <SubType>Designer</SubType>
     </AvaloniaXaml>
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Views\ThirdRegisterAccountView.axaml" />
   </ItemGroup>
 </Project>

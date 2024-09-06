@@ -13,6 +13,7 @@
 		<SolidColorBrush x:Key="TomatoColor" Color="#FF6347"/>
 		<SolidColorBrush x:Key="SteelBlueColor" Color="#4682B4"/>
 		<SolidColorBrush x:Key="CharcoalGrayColor" Color="#2E2E2E"/>
+		<SolidColorBrush x:Key="DarkTomatoColor" Color="#CD4F39"/>
 		
 	</Application.Resources>
 </Application>

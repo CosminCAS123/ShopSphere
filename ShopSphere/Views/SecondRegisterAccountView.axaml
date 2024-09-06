@@ -58,22 +58,25 @@
 		
 			</StackPanel.Resources>
 			
-			<ComboBox Width="100" SelectedIndex="4" ItemsSource="{Binding PhoneNumbers}">
+			<ComboBox Width="100" SelectedIndex="4" 
+					  ItemsSource="{Binding PhoneNumbers}">
 				<ComboBox.ItemTemplate>
 					<DataTemplate>
 					<StackPanel Orientation="Horizontal"
 								HorizontalAlignment="Left"
 								VerticalAlignment="Center" Spacing="2"
-								
 								>
-						<Image Width="20" Height="15" Source="{Binding Uri , Converter={StaticResource StringToBitMapConverter}}">
+						<Image Width="20" Height="15" 
+							   Source="{Binding Uri ,
+							   Converter={StaticResource StringToBitMapConverter}}">
 				   </Image>
 						<TextBlock Text="{Binding Prefix}"></TextBlock>
 					</StackPanel>
 					</DataTemplate>
-				</ComboBox.ItemTemplate>
-				
+				</ComboBox.ItemTemplate>	
 			</ComboBox>
+			
+			
 			<TextBox Width="150"></TextBox>
 		</StackPanel>
 		<Button Grid.Row="3"

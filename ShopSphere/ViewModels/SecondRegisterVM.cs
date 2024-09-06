@@ -20,7 +20,7 @@ namespace ShopSphere.ViewModels;
         public SecondRegisterVM()
         {
 
-        this.PhoneNumbers = new List<PhoneNationality>
+            this.PhoneNumbers = new List<PhoneNationality>
               {
            
    
