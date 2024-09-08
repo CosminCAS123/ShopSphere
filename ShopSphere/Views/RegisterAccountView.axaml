@@ -55,14 +55,18 @@
 		</Label>
  
 		<TextBlock Grid.Row="1">First name</TextBlock>
-		<TextBox Grid.Row="1" HorizontalContentAlignment="Left"></TextBox>
+		<TextBox Grid.Row="1" HorizontalContentAlignment="Left"
+				 Text="{Binding FirstName}"></TextBox>
 		<TextBlock Grid.Row="2">Last name</TextBlock>
-		<TextBox Grid.Row="2"   HorizontalContentAlignment="Left"></TextBox>
+		<TextBox Grid.Row="2"   HorizontalContentAlignment="Left"
+				 Text="{Binding LastName}"></TextBox>
 		<TextBlock Grid.Row="3">Email adress</TextBlock>
-		<TextBox Grid.Row="3"  HorizontalContentAlignment="Left"></TextBox>
+		<TextBox Grid.Row="3"  HorizontalContentAlignment="Left"
+				 Text="{Binding EmailAdress}"></TextBox>
 		
 		<TextBlock Grid.Row="4">Age</TextBlock>
-		<TextBox Grid.Row="4"  HorizontalContentAlignment="Center"></TextBox>
+		<TextBox Grid.Row="4"  HorizontalContentAlignment="Center"
+				 Text="{Binding Age}"></TextBox>
 		<Button Grid.Row="5"
 						Grid.ColumnSpan="2"
 						HorizontalAlignment="Center"

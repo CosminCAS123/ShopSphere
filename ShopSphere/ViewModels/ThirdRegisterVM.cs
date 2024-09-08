@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reactive;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -17,11 +18,12 @@ namespace ShopSphere.ViewModels
     {
         private IAuthNavigationService navigationService;
         private readonly string default_pic = "avares://ShopSphere/Assets/DefaultPFP.png";
+        private string username;
 
         private Bitmap selected_image;
         public Bitmap SelectedImage { get => this.selected_image; set => this.RaiseAndSetIfChanged(ref this.selected_image, value); }
         public ReactiveCommand<UserControl , Unit> SelectImageCommand { get; set; }
-  
+        public string Username { get => this.username; set => this.RaiseAndSetIfChanged(ref this.username, value); }
         public ThirdRegisterVM(IAuthNavigationService navigationService) : base(navigationService)
         {
           

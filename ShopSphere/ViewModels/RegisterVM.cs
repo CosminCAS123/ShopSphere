@@ -27,11 +27,8 @@ namespace ShopSphere.ViewModels
 
 
         public RegisterVM(IAuthNavigationService navigationService) : base(navigationService) 
-        {
-
-            
-            this.NextRegisterCommand = ReactiveCommand.CreateFromTask(goToSecondRegister);
-            
+        {   
+            this.NextRegisterCommand = ReactiveCommand.CreateFromTask(goToSecondRegister);     
         }
         
         private async Task goToSecondRegister()
