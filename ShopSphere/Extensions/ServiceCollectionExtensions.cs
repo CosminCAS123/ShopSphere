@@ -17,10 +17,10 @@ namespace ShopSphere.Extensions
             {
             collection.AddDbContext<ShopSphereContext>();
             collection.AddSingleton<IAuthNavigationService, NavigationService>();
-            collection.AddTransient<LoginVM>();
-            collection.AddTransient<RegisterVM>();
-            collection.AddTransient<SecondRegisterVM>();
-            collection.AddTransient<ThirdRegisterVM>();
+            collection.AddScoped<LoginVM>();
+            collection.AddScoped<RegisterVM>();
+            collection.AddScoped<SecondRegisterVM>();
+            collection.AddScoped<ThirdRegisterVM>();
             }
         }
     

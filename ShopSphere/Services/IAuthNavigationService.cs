@@ -10,9 +10,10 @@ namespace ShopSphere.Services
 {
     public interface IAuthNavigationService
     {
-        void AuthNavigateTo<TViewModel>() where TViewModel : ViewModelBase;
+        void AuthNavigateTo<TViewModel>() where TViewModel : AuthViewModelBase;
+        void AuthNavigateBack();
         User RegisteredUser { get; set; }
-        ViewModelBase AuthContent { get; set; }
+        AuthViewModelBase AuthContent { get; set; }
 
     }
 }

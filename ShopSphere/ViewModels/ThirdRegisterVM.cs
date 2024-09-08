@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace ShopSphere.ViewModels
 {
-    public class ThirdRegisterVM : ViewModelBase
+    public class ThirdRegisterVM : AuthViewModelBase
     {
         private IAuthNavigationService navigationService;
         private readonly string default_pic = "avares://ShopSphere/Assets/DefaultPFP.png";
@@ -21,13 +21,15 @@ namespace ShopSphere.ViewModels
         private Bitmap selected_image;
         public Bitmap SelectedImage { get => this.selected_image; set => this.RaiseAndSetIfChanged(ref this.selected_image, value); }
         public ReactiveCommand<UserControl , Unit> SelectImageCommand { get; set; }
-        public ThirdRegisterVM(IAuthNavigationService nav) 
+  
+        public ThirdRegisterVM(IAuthNavigationService navigationService) : base(navigationService)
         {
-            this.navigationService = nav;
+          
             this.SelectImageCommand = ReactiveCommand.CreateFromTask<UserControl>(selectImageCommand);
-
+          
             this.SelectedImage = new Bitmap(AssetLoader.Open(new Uri(default_pic))) ;
         }
+     
         private async Task selectImageCommand(UserControl registerView)
         {
             var topLevel = TopLevel.GetTopLevel(registerView);

@@ -27,7 +27,15 @@
 				<Setter Property="HorizontalAlignment" Value="Center"></Setter>
 			</Style>
 		</Grid.Styles>
-
+		<Button Grid.Row="0"
+				VerticalAlignment="Top"
+				HorizontalAlignment="Left"
+				VerticalContentAlignment="Center"
+				HorizontalContentAlignment="Center"
+				Command="{Binding GoBackCommand}"
+				Width="110"
+				Height="30"
+				Foreground="White">Go Back</Button>
 		<Label Grid.Row="0"
 			   HorizontalAlignment="Center"
 			   VerticalAlignment="Center"

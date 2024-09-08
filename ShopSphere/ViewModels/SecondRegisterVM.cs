@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace ShopSphere.ViewModels;
 
-    public class SecondRegisterVM : ViewModelBase
+    public class SecondRegisterVM : AuthViewModelBase
     {
 
      
@@ -19,11 +19,10 @@ namespace ShopSphere.ViewModels;
     private List<PhoneNationality> phoneNationalities;
         public List<PhoneNationality> PhoneNumbers { get => this.phoneNationalities; set => this.RaiseAndSetIfChanged(ref this.phoneNationalities , value); }
 
-        private IAuthNavigationService navigationService;
- 
-        public ReactiveCommand<Unit, Unit> GoToNextRegisterCommand { get; set; }
-        public SecondRegisterVM(IAuthNavigationService nav)
-        {
+   
+    public ReactiveCommand<Unit, Unit> GoToNextRegisterCommand { get; set; }
+        public SecondRegisterVM(IAuthNavigationService navigationService) : base(navigationService)
+    {
 
             this.PhoneNumbers = new List<PhoneNationality>
               {
@@ -47,11 +46,12 @@ namespace ShopSphere.ViewModels;
 
 
     };
-            this.navigationService = nav;
+           
         this.GoToNextRegisterCommand = ReactiveCommand.Create(go_to_next_register);
+      
 
         }
-
+ 
     private void go_to_next_register() =>   this.navigationService.AuthNavigateTo<ThirdRegisterVM>();
     
 

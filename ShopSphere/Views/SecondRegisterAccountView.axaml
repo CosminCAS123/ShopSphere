@@ -11,8 +11,19 @@
 			 x:DataType="vm:SecondRegisterVM"
 			 Background="{StaticResource CharcoalGrayColor}">
 	<Grid RowDefinitions="100,*,*,100">
+		<Button Grid.Row="0"
+				VerticalAlignment="Top"
+				HorizontalAlignment="Left"
+				VerticalContentAlignment="Center"
+				HorizontalContentAlignment="Center"
+				Command="{Binding GoBackCommand}"
+				Width="110"
+				Height="30"
+				Foreground="White">Go Back</Button>
 		<TextBlock xml:space="preserve"
 				   Foreground="White"
+				    Grid.Row="0"
+				   VerticalAlignment="Bottom"
 				   FontSize="16">
 			Good ! Now enter your phone number and your security PIN. The PIN will be 
 			of use if you forget your password!

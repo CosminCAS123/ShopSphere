@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace ShopSphere.ViewModels
 {
-    public class RegisterVM : ViewModelBase
+    public class RegisterVM : AuthViewModelBase
     {
 
         private string firstName;
@@ -24,14 +24,16 @@ namespace ShopSphere.ViewModels
 
         public ReactiveCommand<Unit , Unit> NextRegisterCommand { get; set; }
 
-        private IAuthNavigationService navigationService;
-        public RegisterVM(IAuthNavigationService nav)
+
+
+        public RegisterVM(IAuthNavigationService navigationService) : base(navigationService) 
         {
 
-            this.navigationService = nav;
+            
             this.NextRegisterCommand = ReactiveCommand.CreateFromTask(goToSecondRegister);
+            
         }
-         
+        
         private async Task goToSecondRegister()
         {
             //VERIFICATION FIELD ??? !!!!
