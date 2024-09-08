@@ -18,8 +18,18 @@
 				HorizontalContentAlignment="Center"
 				Command="{Binding GoBackCommand}"
 				Width="110"
+				Content="Go Back"
 				Height="30"
-				Foreground="White">Go Back</Button>
+				Foreground="White">
+			<Button.Background>
+				<LinearGradientBrush StartPoint="0,0" EndPoint="100,0">
+					<GradientStop Color="#4682B4" Offset="0"/>
+					<!-- Steel Blue -->
+					<GradientStop Color="#1E4C79" Offset="1"/>
+					<!-- Darker Blue for stronger contrast -->
+				</LinearGradientBrush>
+			</Button.Background>
+		</Button>
 		<TextBlock xml:space="preserve"
 				   Foreground="White"
 				    Grid.Row="0"
@@ -70,18 +80,24 @@
 			</StackPanel.Resources>
 			
 			<ComboBox Width="100" SelectedIndex="4" 
-					  ItemsSource="{Binding PhoneNumbers}">
+					  ItemsSource="{Binding PhoneNumbers}"
+					  >
 				<ComboBox.ItemTemplate>
 					<DataTemplate>
 					<StackPanel Orientation="Horizontal"
 								HorizontalAlignment="Left"
 								VerticalAlignment="Center" Spacing="2"
+								
 								>
+						
 						<Image Width="20" Height="15" 
+							   
 							   Source="{Binding Uri ,
-							   Converter={StaticResource StringToBitMapConverter}}">
+							   Converter={StaticResource StringToBitMapConverter}}"
+							   >
 				   </Image>
-						<TextBlock Text="{Binding Prefix}"></TextBlock>
+						<TextBlock Text="{Binding Prefix}"
+								   ></TextBlock>
 					</StackPanel>
 					</DataTemplate>
 				</ComboBox.ItemTemplate>	

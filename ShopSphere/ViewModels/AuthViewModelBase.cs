@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace ShopSphere.ViewModels
 {
-    public class AuthViewModelBase : ReactiveObject
+    public abstract class AuthViewModelBase : ReactiveObject
     {
         public IAuthNavigationService navigationService;
         public ReactiveCommand<Unit, Unit> GoBackCommand { get; set; }
-        protected AuthViewModelBase(IAuthNavigationService navigationService)
+        public AuthViewModelBase(IAuthNavigationService navigationService)
         {
             this.navigationService = navigationService;
             this.GoBackCommand = ReactiveCommand.Create(() => { this.navigationService.AuthNavigateBack(); });

@@ -34,8 +34,18 @@
 				HorizontalContentAlignment="Center"
 				Command="{Binding GoBackCommand}"
 				Width="110"
+				Content="Go Back"
 				Height="30"
-				Foreground="White">Go Back</Button>
+				Foreground="White">
+			<Button.Background>
+				<LinearGradientBrush StartPoint="0,0" EndPoint="100,0">
+					<GradientStop Color="#4682B4" Offset="0"/>
+					<!-- Steel Blue -->
+					<GradientStop Color="#1E4C79" Offset="1"/>
+					<!-- Darker Blue for stronger contrast -->
+				</LinearGradientBrush>
+			</Button.Background>
+		</Button>
 		<Label Grid.Row="0"
 			   HorizontalAlignment="Center"
 			   VerticalAlignment="Center"
