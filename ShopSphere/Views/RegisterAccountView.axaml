@@ -11,6 +11,7 @@
 			 x:DataType="vm:RegisterVM">
 	<Grid RowDefinitions="100 ,Auto, Auto , Auto , Auto , 100"
 		  >
+	
 		<Grid.Styles>
 			<Style Selector="TextBlock">
 				<Setter Property="HorizontalAlignment" Value="Center"></Setter>
@@ -26,11 +27,36 @@
 				<Setter Property="FontSize" Value="15"></Setter>
 				<Setter Property="HorizontalAlignment" Value="Center"></Setter>
 			</Style>
+			<Style Selector="Image">
+				<Setter Property="Height" Value="25"></Setter>
+				<Setter Property="Width" Value="25"></Setter>
+				<Setter Property="HorizontalAlignment" Value="Right"></Setter>
+				<Setter Property="Margin" Value="0 , 25 , 150 , 0"></Setter>
+			</Style>
+			<Style Selector="ToolTip">
+				<Setter Property="Background" Value="{StaticResource CharcoalGrayColor}"/>
+				<Setter Property="Foreground" Value="White"></Setter>
+				<Setter Property="BorderBrush" Value="White"/>
+				<Setter Property="BorderThickness" Value="1"/>
+				<Setter Property="Template">
+					<ControlTemplate>
+						<Border Background="{TemplateBinding Background}"
+								 BorderBrush="{TemplateBinding BorderBrush}"
+								BorderThickness="{TemplateBinding BorderThickness}"
+								Padding="8">
+							<TextBlock Text="{TemplateBinding Content}"
+									   FontSize="13"
+									   Foreground="{TemplateBinding Foreground}"/>
+						</Border>
+					</ControlTemplate>
+				</Setter>
+			</Style>
 		</Grid.Styles>
 		<Button Grid.Row="0"
 				VerticalAlignment="Top"
 				HorizontalAlignment="Left"
 				VerticalContentAlignment="Center"
+				
 				HorizontalContentAlignment="Center"
 				Command="{Binding GoBackCommand}"
 				Width="110"
@@ -53,20 +79,44 @@
 			   Foreground="White">
 			Hey there! Create your account for free!
 		</Label>
- 
+		
 		<TextBlock Grid.Row="1">First name</TextBlock>
+		
 		<TextBox Grid.Row="1" HorizontalContentAlignment="Left"
 				 Text="{Binding FirstName}"></TextBox>
+		<Image Grid.Row="1" Source="/Assets/InvalidField.png"
+			   IsVisible="{Binding FirstMarkEnabled}"
+			   ToolTip.Tip="{Binding FirstToolTip}"
+			   ></Image>
+
+		<Image Grid.Row="2" Source="/Assets/InvalidField.png"
+			   IsVisible="{Binding LastMarkEnabled}"
+			   ToolTip.Tip="{Binding LastToolTip}"
+			   ></Image>
+		<Image Grid.Row="3" Source="/Assets/InvalidField.png"
+			   IsVisible="{Binding EmailMarkEnabled}"
+			   ToolTip.Tip="{Binding EmailToolTip}"
+			   ></Image>
+		<Image Grid.Row="4" Source="/Assets/InvalidField.png"
+			   IsVisible="{Binding AgeMarkEnabled}"
+			   ToolTip.Tip="{Binding AgeToolTip}"
+			   ></Image>
 		<TextBlock Grid.Row="2">Last name</TextBlock>
+		
 		<TextBox Grid.Row="2"   HorizontalContentAlignment="Left"
 				 Text="{Binding LastName}"></TextBox>
+		
 		<TextBlock Grid.Row="3">Email adress</TextBlock>
+		
 		<TextBox Grid.Row="3"  HorizontalContentAlignment="Left"
 				 Text="{Binding EmailAdress}"></TextBox>
 		
 		<TextBlock Grid.Row="4">Age</TextBlock>
+		
 		<TextBox Grid.Row="4"  HorizontalContentAlignment="Center"
+				 MaxLength="2"
 				 Text="{Binding Age}"></TextBox>
+		
 		<Button Grid.Row="5"
 						Grid.ColumnSpan="2"
 						HorizontalAlignment="Center"

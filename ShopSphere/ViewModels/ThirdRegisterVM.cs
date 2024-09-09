@@ -30,6 +30,7 @@ namespace ShopSphere.ViewModels
             this.SelectImageCommand = ReactiveCommand.CreateFromTask<UserControl>(selectImageCommand);
           
             this.SelectedImage = new Bitmap(AssetLoader.Open(new Uri(default_pic))) ;
+            
         }
      
         private async Task selectImageCommand(UserControl registerView)

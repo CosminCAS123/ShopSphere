@@ -26,6 +26,7 @@
     <None Remove="Assets\Flags\RoFlag.png" />
     <None Remove="Assets\Flags\SpFlag.png" />
     <None Remove="Assets\Flags\UkFlag.png" />
+    <None Remove="Assets\InvalidField.png" />
     <None Remove="Assets\Logo.png" />
   </ItemGroup>
 
