@@ -20,9 +20,10 @@ namespace ShopSphere.ViewModels;
     private string pin3 = string.Empty;
     private string pin4 = string.Empty;
     private int selected_index;
-    private int max_digits;
+    private string max_digits;
     private List<PhoneNationality> phoneNationalities;
     private string phoneNumber;
+    
 
     #endregion
 
@@ -32,7 +33,7 @@ namespace ShopSphere.ViewModels;
         
         { 
             this.RaiseAndSetIfChanged(ref this.selected_index, value);
-            if (SelectedIndex >= 0)this.MaxDigits = this.PhoneNumbers[SelectedIndex].MaxDigits;    
+            if (SelectedIndex >= 0)this.MaxDigits = this.PhoneNumbers[SelectedIndex].MaxDigits.ToString();    
         } }  
 
     public string PhoneNumberNoPrefix { get => this.phoneNumber; set => this.RaiseAndSetIfChanged(ref this.phoneNumber, value); }
@@ -44,7 +45,8 @@ namespace ShopSphere.ViewModels;
 
     public string PinFour { get => this.pin4; set => this.RaiseAndSetIfChanged(ref this.pin4, value); }
 
-    public int MaxDigits { get => this.max_digits; set => this.RaiseAndSetIfChanged(ref this.max_digits, value); }
+    public string MaxDigits { get => this.max_digits; set => this.RaiseAndSetIfChanged(ref this.max_digits, value); }
+ 
 
     public List<PhoneNationality> PhoneNumbers { get => this.phoneNationalities; set => this.RaiseAndSetIfChanged(ref this.phoneNationalities, value); }
     public ReactiveCommand<Unit, Unit> GoToNextRegisterCommand { get; set; }
@@ -78,12 +80,32 @@ namespace ShopSphere.ViewModels;
 
     };
         this.SelectedIndex = 0;
+        this.MaxDigits = "?";
         this.GoToNextRegisterCommand = ReactiveCommand.Create(go_to_next_register);
       
 
         }
  
-    private void go_to_next_register() =>   this.navigationService.AuthNavigateTo<ThirdRegisterVM>();
+    private void go_to_next_register()
+    {
+        if (!string.IsNullOrEmpty(this.PinOne) &&
+            !string.IsNullOrEmpty(this.PinTwo) &&
+            !string.IsNullOrEmpty(this.PinThree) &&
+            !string.IsNullOrEmpty(this.PinFour) &&
+            this.PhoneNumberNoPrefix.Length.ToString() == this.MaxDigits)
+        {
+            //add to registered user
+            //go to third register
+            var pin = this.PinOne + this.PinTwo + this.PinThree + this.PinFour;
+            this.navigationService.RegisteredUser.PhoneNumber = this.PhoneNumbers[SelectedIndex].Prefix + this.PhoneNumberNoPrefix;
+            this.navigationService.RegisteredUser.SecurityPIN = pin;
+            this.navigationService.AuthNavigateTo<ThirdRegisterVM>();
+
+        }
+        
+
+        
+    }
     
 
     }

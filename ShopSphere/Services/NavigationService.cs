@@ -41,7 +41,7 @@ namespace ShopSphere.Services
             this.serviceProvider = service_provider;
             this.RegisteredUser = new User();
             this.navigationStack = new Stack<AuthViewModelBase>();
-          
+            
            
         
         }

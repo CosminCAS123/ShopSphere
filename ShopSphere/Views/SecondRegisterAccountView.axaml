@@ -107,7 +107,19 @@
 			<TextBox Width="150"
 					 Text="{Binding PhoneNumberNoPrefix}"
 					 MaxLength="{Binding MaxDigits}"></TextBox>
+			
 		</StackPanel>
+		<TextBlock Grid.Row="2" Foreground="{StaticResource TomatoColor}"
+				   HorizontalAlignment="Right"
+				   VerticalAlignment="Center"
+				  
+				   TextDecorations="Underline"
+				   Margin="0 , 0 , 70 , 0">
+
+			<Run>Must have </Run>
+			<Run Text="{Binding MaxDigits}"></Run>
+			<Run> digits</Run>
+		</TextBlock>
 		<Button Grid.Row="3"
 					
 					HorizontalAlignment="Center"
