@@ -80,18 +80,18 @@ namespace ShopSphere.ViewModels
 
             });
         }
-        private void SetUserTest()
+     /*private void SetUser()
         {
+            navigationService.RegisteredUser.Age = 19;
+            navigationService.RegisteredUser.EmailAdress = "cosmingamer2004@gmail.com";
+            navigationService.RegisteredUser.FirstName = "Cosmin";
+            navigationService.RegisteredUser.LastName = "Andrei";
+            navigationService.RegisteredUser.PasswordHash = "fsjhfsasjaf23831139fnasdsankksaf19021439";
+            navigationService.RegisteredUser.PhoneNumber = "+40741039009";
+            navigationService.RegisteredUser.SecurityPIN = "1234";
            
-           
-            navigationService.RegisteredUser.FirstName = "Devon";
-            navigationService.RegisteredUser.LastName = "Larrat";
-            navigationService.RegisteredUser.EmailAdress = "devonlarrat123@gmail.com";
-            navigationService.RegisteredUser.PasswordHash = "12345";
-            navigationService.RegisteredUser.Age = 25;
-            navigationService.RegisteredUser.SecurityPIN = "12345";
-            navigationService.RegisteredUser.PhoneNumber = "12345678";
-        }
+
+        }*/
         private async Task finish_register_command()
         {
             if (!isLoading) {
@@ -111,7 +111,7 @@ namespace ShopSphere.ViewModels
                             else
                             {
                                 //ADD PFP TO PROJECT
-                                SetUserTest();
+
                                 
                                 var file_name = $"{this.Username}pfp{this.image_extension}";
 

@@ -1,6 +1,8 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.EntityFrameworkCore.Query.SqlExpressions;
+using Microsoft.Extensions.DependencyInjection;
 using ReactiveUI;
 using ShopSphere.Helpers;
+using ShopSphere.Repositories;
 using ShopSphere.Services;
 using System;
 using System.Collections.Generic;
@@ -29,19 +31,28 @@ namespace ShopSphere.ViewModels
         private string last_tool_tip;
         private string email_tool_tip;
         private string age_tool_tip;
-        public string FirstToolTip { get => this.first_tool_tip; set => this.RaiseAndSetIfChanged(ref this.first_tool_tip , value); }
+        private string password;
+        private bool pass_mark_enabled = false;
+        private string password_tool_tip;
+        private bool is_email_error_visible = false;
+        private IUserRepository user_repository;
+        private IPasswordHashService password_hash_service;
+        public string PasswordToolTip { get => this.password_tool_tip; set => this.RaiseAndSetIfChanged(ref this.password_tool_tip, value); }
+        public string FirstToolTip { get => this.first_tool_tip; set => this.RaiseAndSetIfChanged(ref this.first_tool_tip, value); }
         public string LastToolTip { get => this.last_tool_tip; set => this.RaiseAndSetIfChanged(ref this.last_tool_tip, value); }
         public string EmailToolTip { get => this.email_tool_tip; set => this.RaiseAndSetIfChanged(ref this.email_tool_tip, value); }
         public string AgeToolTip { get => this.age_tool_tip; set => this.RaiseAndSetIfChanged(ref this.age_tool_tip, value); }
-
+        public bool PasswordMarkEnabled { get => this.pass_mark_enabled; set => this.RaiseAndSetIfChanged(ref this.pass_mark_enabled, value); } 
         public bool FirstMarkEnabled { get => this.first_mark_enabled; set => this.RaiseAndSetIfChanged(ref this.first_mark_enabled, value); }
         public bool LastMarkEnabled { get => this.last_mark_enabled; set => this.RaiseAndSetIfChanged(ref this.last_mark_enabled, value); }
+        public bool IsEmailErrorVisible { get => this.is_email_error_visible; set => this.RaiseAndSetIfChanged(ref this.is_email_error_visible, value); }
 
         public bool EmailMarkEnabled { get => this.email_mark_enabled; set => this.RaiseAndSetIfChanged(ref this.email_mark_enabled, value); }
 
         public bool AgeMarkEnabled { get => this.age_mark_enabled; set => this.RaiseAndSetIfChanged(ref this.age_mark_enabled, value); }
         public string FirstName { get => this.firstName; set => this.RaiseAndSetIfChanged(ref this.firstName, value); }
         public string LastName { get => this.lastName; set => this.RaiseAndSetIfChanged(ref this.lastName, value); }
+        public string Password { get => this.password; set => this.RaiseAndSetIfChanged(ref this.password, value); }
         public string EmailAdress { get => this.emailAdress ; set => this.RaiseAndSetIfChanged(ref this.emailAdress , value); }
         public string Age { get => this.age; set => this.RaiseAndSetIfChanged(ref this.age  , value); }
 
@@ -49,12 +60,14 @@ namespace ShopSphere.ViewModels
 
 
 
-        public RegisterVM(IAuthNavigationService navigationService) : base(navigationService) 
+        public RegisterVM(IAuthNavigationService navigationService , IUserRepository userRepository , IPasswordHashService passwordHashService) : base(navigationService) 
         {
-            
+            this.password_hash_service = passwordHashService;
             this.NextRegisterCommand = ReactiveCommand.CreateFromTask(goToSecondRegister) ;
+            this.user_repository = userRepository;
+            this.IsEmailErrorVisible = false;
             SetFieldObservables();
-            for (int i = 1; i < 5; i++) DisableMark(i);
+            for (int i = 1; i < 6; i++) DisableMark(i);
         }
         private void EnableMark(int index , string errorMessage)
         {
@@ -75,6 +88,10 @@ namespace ShopSphere.ViewModels
                 case 4:
                     this.AgeToolTip = errorMessage;
                     this.AgeMarkEnabled = true;
+                    break;
+                case 5:
+                    this.PasswordToolTip = errorMessage;
+                    this.PasswordMarkEnabled = true;
                     break;
                 default:
                     throw new NotSupportedException();
@@ -97,6 +114,9 @@ namespace ShopSphere.ViewModels
                     break;
                 case 4:
                     this.AgeMarkEnabled = false;
+                    break;
+                case 5:
+                    this.PasswordMarkEnabled = false;
                     break;
 
                  default: throw new NotSupportedException();
@@ -194,21 +214,61 @@ namespace ShopSphere.ViewModels
                     
 
                 });
+
+            var passwordobservable = this.WhenAnyValue(x => x.Password).
+                Subscribe(x =>
+                {
+                    if (string.IsNullOrEmpty(x)) { DisableMark(5);return; }
+                    /*  -one uppercase letter
+                     *  -min length
+                     *  -one lowercase letter
+                     *  -one special character
+                     *  -one digit
+                     
+                     */
+
+                    var pass = x;
+                    if (pass.Length < 6) { EnableMark(5, ErrorResources.Register.PasswordLength); return; }
+                    if (!pass.Any(char.IsUpper)) { EnableMark(5, ErrorResources.Register.UpperCaseLetter); return; }
+                    if (!pass.Any(char.IsLower)) { EnableMark(5, ErrorResources.Register.LowerCaseLetter);return; }
+                    if (!pass.Any(char.IsDigit)) { EnableMark(5 , ErrorResources.Register.AtLeastOneDigit); return; }
+                    string specialCharPattern = @"[!@#$%^&*()_+\-=\[\]{}|\\:;""',.<>?/]";
+
+                    bool containsSpecialChar = Regex.IsMatch(pass, specialCharPattern);
+
+                    if (!Regex.IsMatch(pass, specialCharPattern)) { EnableMark(5 , ErrorResources.Register.PasswordSpecialCharacters); return; }
+                    DisableMark(5);
+                    
+                });
         }
 
         private async Task goToSecondRegister()
         {
-            //IF NO EMPTY FIELDS AND MARKS DISABLED
-            var first_condition = !this.FirstMarkEnabled && !this.LastMarkEnabled && !this.EmailMarkEnabled && !this.AgeMarkEnabled;
-            var second_condition = !string.IsNullOrEmpty(FirstName) && !string.IsNullOrEmpty(LastName) && !string.IsNullOrEmpty(EmailAdress) && !string.IsNullOrEmpty(Age);
-            if (first_condition && second_condition)
+           
+            if (this.FirstMarkEnabled || this.LastMarkEnabled || this.EmailMarkEnabled || this.AgeMarkEnabled || this.PasswordMarkEnabled) return;
+
+            if (string.IsNullOrEmpty(FirstName) || string.IsNullOrEmpty(LastName) || string.IsNullOrEmpty(EmailAdress) || string.IsNullOrEmpty(Age) || string.IsNullOrEmpty(Password))return;
+
+            if (IsEmailErrorVisible) return;
+            //verify if email is already in db
+
+            var exists = await this.user_repository.IsEmailRegisteredAsync(this.EmailAdress);
+            if (exists)//make email error visible for 3 seconds
             {
-                this.navigationService.RegisteredUser.FirstName = this.FirstName;
-                this.navigationService.RegisteredUser.LastName = this.LastName;
-                this.navigationService.RegisteredUser.EmailAdress = this.EmailAdress;
-                this.navigationService.RegisteredUser.Age = 3;
-                this.navigationService.AuthNavigateTo<SecondRegisterVM>();
+                this.IsEmailErrorVisible = true;
+                await Task.Delay(3000);
+                this.IsEmailErrorVisible = false;
+                return;
             }
+
+
+            this.navigationService.RegisteredUser.FirstName = this.FirstName;
+            this.navigationService.RegisteredUser.LastName = this.LastName;
+            this.navigationService.RegisteredUser.EmailAdress = this.EmailAdress;
+            this.navigationService.RegisteredUser.Age = int.Parse(this.Age);
+            this.navigationService.RegisteredUser.PasswordHash = await password_hash_service.GetPasswordHashAsync(this.Password);
+            this.navigationService.AuthNavigateTo<SecondRegisterVM>();
+            
         }
         
             

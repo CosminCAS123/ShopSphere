@@ -12,7 +12,7 @@ namespace ShopSphere.Models;
     public class User
     {
 
-       public int UserID { get; set; }
+       public int? UserID { get; set; }
        
     public string? SecurityPIN { get; set; }
 

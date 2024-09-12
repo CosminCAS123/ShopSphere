@@ -23,6 +23,7 @@ namespace ShopSphere.Extensions
             collection.AddScoped<RegisterVM>();
             collection.AddScoped<SecondRegisterVM>();
             collection.AddScoped<ThirdRegisterVM>();
+            collection.AddTransient<IPasswordHashService, PasswordHashService>();
             }
         }
     

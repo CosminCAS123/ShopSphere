@@ -9,7 +9,7 @@
              x:Class="ShopSphere.Views.RegisterAccountView"
 			 Background="{StaticResource CharcoalGrayColor}"
 			 x:DataType="vm:RegisterVM">
-	<Grid RowDefinitions="100 ,Auto, Auto , Auto , Auto , 100"
+	<Grid RowDefinitions="60 ,Auto, Auto , Auto , Auto ,Auto, 100"
 		  >
 	
 		<Grid.Styles>
@@ -22,6 +22,7 @@
 			<Style Selector="TextBox">
 				<Setter Property="Margin" Value="0 , 25 , 0 , 0"></Setter>
 				<Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+				<Setter Property="HorizontalContentAlignment" Value="Center"/>
 				<Setter Property="Width" Value="300"></Setter>
 				<Setter Property="Height" Value="38"></Setter>
 				<Setter Property="FontSize" Value="15"></Setter>
@@ -34,18 +35,18 @@
 				<Setter Property="Margin" Value="0 , 25 , 150 , 0"></Setter>
 			</Style>
 			<Style Selector="ToolTip">
-				<Setter Property="Background" Value="{StaticResource CharcoalGrayColor}"/>
+				<Setter Property="Background" Value="DarkSlateGray"/>
 				<Setter Property="Foreground" Value="White"></Setter>
-				<Setter Property="BorderBrush" Value="White"/>
-				<Setter Property="BorderThickness" Value="1"/>
+				
 				<Setter Property="Template">
 					<ControlTemplate>
 						<Border Background="{TemplateBinding Background}"
-								 BorderBrush="{TemplateBinding BorderBrush}"
-								BorderThickness="{TemplateBinding BorderThickness}"
-								Padding="8">
+								Padding="9"
+								>
 							<TextBlock Text="{TemplateBinding Content}"
 									   FontSize="13"
+									   HorizontalAlignment="Center"
+									   VerticalAlignment="Center"
 									   Foreground="{TemplateBinding Foreground}"/>
 						</Border>
 					</ControlTemplate>
@@ -75,14 +76,16 @@
 		<Label Grid.Row="0"
 			   HorizontalAlignment="Center"
 			   VerticalAlignment="Center"
-			   FontSize="25"
+			   FontSize="21"
 			   Foreground="White">
 			Hey there! Create your account for free!
 		</Label>
 		
-		<TextBlock Grid.Row="1">First name</TextBlock>
+		<TextBlock Grid.Row="1"
+				   VerticalAlignment="Top">First name</TextBlock>
 		
-		<TextBox Grid.Row="1" HorizontalContentAlignment="Left"
+		<TextBox Grid.Row="1" MaxLength="9"
+				 
 				 Text="{Binding FirstName}"></TextBox>
 		<Image Grid.Row="1" Source="/Assets/InvalidField.png"
 			   IsVisible="{Binding FirstMarkEnabled}"
@@ -101,28 +104,41 @@
 			   IsVisible="{Binding AgeMarkEnabled}"
 			   ToolTip.Tip="{Binding AgeToolTip}"
 			   ></Image>
+		<Image Grid.Row="5" Source="/Assets/InvalidField.png"
+			   IsVisible="{Binding PasswordMarkEnabled}"
+			   ToolTip.Tip="{Binding PasswordToolTip}"
+			   ></Image>
 		<TextBlock Grid.Row="2">Last name</TextBlock>
 		
-		<TextBox Grid.Row="2"   HorizontalContentAlignment="Left"
+		<TextBox Grid.Row="2"    MaxHeight="9"
 				 Text="{Binding LastName}"></TextBox>
 		
 		<TextBlock Grid.Row="3">Email adress</TextBlock>
 		
-		<TextBox Grid.Row="3"  HorizontalContentAlignment="Left"
+		<TextBox Grid.Row="3"  
 				 Text="{Binding EmailAdress}"></TextBox>
 		
 		<TextBlock Grid.Row="4">Age</TextBlock>
 		
-		<TextBox Grid.Row="4"  HorizontalContentAlignment="Center"
+		<TextBox Grid.Row="4" 
 				 MaxLength="2"
 				 Text="{Binding Age}"></TextBox>
-		
-		<Button Grid.Row="5"
-						Grid.ColumnSpan="2"
+		<TextBlock Grid.Row="5">Password</TextBlock>
+		<TextBox Grid.Row="5" 
+				 MaxLength="15"
+				 Text="{Binding Password}"
+				 ></TextBox>
+		<TextBlock Grid.Row="6"
+				   Foreground="Red"
+				   HorizontalAlignment="Right"
+				   IsVisible="{Binding IsEmailErrorVisible}"
+				   Margin="0 , 40 , 30 , 0">Email adress already in use !</TextBlock>
+		<Button Grid.Row="6"
+						
 						HorizontalAlignment="Center"
 						VerticalAlignment="Center"
 						Height="40"
-						Margin="0 , 0 , 0 ,0"
+						Margin="0 , 0 , 0 ,20"
 				        Command="{Binding NextRegisterCommand}"
 						Foreground="White"
 						FontSize="18"

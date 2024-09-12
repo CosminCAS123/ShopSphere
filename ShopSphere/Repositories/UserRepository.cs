@@ -28,5 +28,17 @@ namespace ShopSphere.Repositories
             await this.context.Users.AddAsync(user);
             await this.context.SaveChangesAsync();
         }
+
+        public async Task<bool> IsEmailRegisteredAsync(string email)
+        {
+            bool is_registered = await this.context.Users.AnyAsync(user => user.EmailAdress == email);
+            return is_registered;
+        }
+
+        public async Task<bool> IsPhoneNumberRegisteredAsync(string phoneNumber)
+        {
+            bool is_registered = await this.context.Users.AnyAsync(user => user.PhoneNumber == phoneNumber);
+            return is_registered;
+        }
     }
 }

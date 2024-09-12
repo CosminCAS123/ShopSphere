@@ -23,10 +23,12 @@ namespace ShopSphere.Helpers
             public const string RegisteredSuccessfully = "User registered successfully!";
             public const string InvalidPhoneNumber = "Phone number is not valid.";
             public const string PasswordLength = "Password must be at least 6 characters long.";
-            public const string PasswordSpecialCharacters = "Passowrd must contain at least one special character.";
+            public const string PasswordSpecialCharacters = "Password must contain a special character.";
             public const string PasswordNoNumbers = "Password must contain at least a number.";
-            public const string PasswordUpperCase = " Password must have at least one uppercase letter";
+            public const string UpperCaseLetter = " This field must have at least one uppercase letter";
             public const string OnlyDigits = "This field must only contain digits";
+            public const string AtLeastOneDigit = "This field must contain at least one digit";
+            public const string LowerCaseLetter = "This field must contain at least one lowercase letter";
 
 
         

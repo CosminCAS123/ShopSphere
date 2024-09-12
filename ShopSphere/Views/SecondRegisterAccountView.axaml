@@ -120,6 +120,10 @@
 			<Run Text="{Binding MaxDigits}"></Run>
 			<Run> digits</Run>
 		</TextBlock>
+		<TextBlock Grid.Row="3" Foreground="Red"
+				   HorizontalAlignment="Center"
+				   IsVisible="{Binding IsPhoneNumberRegistered}"
+				   FontSize="15">Phone number is already used !</TextBlock>
 		<Button Grid.Row="3"
 					
 					HorizontalAlignment="Center"
