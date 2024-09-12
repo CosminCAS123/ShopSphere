@@ -19,7 +19,11 @@ namespace ShopSphere.Services
         private AuthViewModelBase auth_content;
         public User RegisteredUser { get => this.registered_user; set => this.RaiseAndSetIfChanged(ref this.registered_user, value); }
         public AuthViewModelBase AuthContent { get => this.auth_content; set => this.RaiseAndSetIfChanged(ref this.auth_content, value); }
-
+        
+        public void AuthRegisterFinished()
+        {
+            for (int i = 0; i < 3; i++) this.navigationStack.Pop();
+        }
         public void AuthNavigateTo<TViewModel>() where TViewModel : AuthViewModelBase
         {
 

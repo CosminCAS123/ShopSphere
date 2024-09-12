@@ -19,7 +19,8 @@ namespace ShopSphere.Helpers
             public const string NotUniqueEmailAdress = "This email adress is already in use.";
             public const string NotUniqueUsername = "This username is already in use.";
             public const string AgeLimitBottom = "You must be at least 18.";
-          
+            public const string UsernameAlreadyExists = "Username already exists.";
+            public const string RegisteredSuccessfully = "User registered successfully!";
             public const string InvalidPhoneNumber = "Phone number is not valid.";
             public const string PasswordLength = "Password must be at least 6 characters long.";
             public const string PasswordSpecialCharacters = "Passowrd must contain at least one special character.";

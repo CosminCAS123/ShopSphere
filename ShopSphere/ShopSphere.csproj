@@ -62,4 +62,8 @@
   <ItemGroup>
     <UpToDateCheckInput Remove="Views\ThirdRegisterAccountView.axaml" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Assets\UserPFP\" />
+  </ItemGroup>
 </Project>

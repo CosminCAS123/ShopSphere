@@ -1,5 +1,6 @@
 ﻿    using Microsoft.Extensions.DependencyInjection;
 using ShopSphere.Data;
+using ShopSphere.Repositories;
 using ShopSphere.Services;
 using ShopSphere.ViewModels;
 using System;
@@ -17,6 +18,7 @@ namespace ShopSphere.Extensions
             {
             collection.AddDbContext<ShopSphereContext>();
             collection.AddSingleton<IAuthNavigationService, NavigationService>();
+            collection.AddScoped<IUserRepository, UserRepository>();
             collection.AddScoped<LoginVM>();
             collection.AddScoped<RegisterVM>();
             collection.AddScoped<SecondRegisterVM>();

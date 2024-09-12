@@ -54,12 +54,13 @@ namespace ShopSphere.ViewModels;
     #endregion
 
 
-    public SecondRegisterVM(IAuthNavigationService navigationService) : base(navigationService)
+    public SecondRegisterVM(IAuthNavigationService navigation_service) : base(navigation_service)
     {
-
+        var nav = this.navigationService;
+       
             this.PhoneNumbers = new List<PhoneNationality>
               {
-           
+          
    
 
        new PhoneNationality(PhoneResources.MaxDigits.France,  PhoneResources.Prefixes.France, PhoneResources.URIs.France),

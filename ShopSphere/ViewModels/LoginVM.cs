@@ -34,7 +34,7 @@ namespace ShopSphere.ViewModels
           
             this.GoToFirstRegisterCommand = ReactiveCommand.CreateFromTask(goToFirstRegister);
         }
-        private async Task goToFirstRegister() =>  navigationService.AuthNavigateTo<SecondRegisterVM>();
+        private async Task goToFirstRegister() =>  navigationService.AuthNavigateTo<ThirdRegisterVM>();
         
         
                             

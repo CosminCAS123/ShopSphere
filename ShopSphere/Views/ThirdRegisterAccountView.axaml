@@ -10,7 +10,9 @@
 			 x:DataType="vm:ThirdRegisterVM">
 
 	<Grid RowDefinitions="70 , 40 , * , * ,  80">
-
+		<Grid.Styles>
+			
+		</Grid.Styles>
 
 		<Button Grid.Row="0"
 				  VerticalAlignment="Top"
@@ -50,7 +52,7 @@
 					   Grid.Row="1"
 					   VerticalAlignment="Center"
 					   
-					   Margin="170 , 0 , 0 , 0"
+					   Margin="170 , 5 , 0 , 0"
 					   FontSize="16">Username: </TextBlock>
 			<TextBox Grid.Row="1"
 					 Width="180"
@@ -63,6 +65,23 @@
 					 Height="35">
 				
 			</TextBox>
+		<Image Grid.Row="1" Width="22" Height="22"
+			   Source="avares://ShopSphere/Assets/InvalidField.png"
+			   IsVisible="{Binding IsErrorVisible}"
+			   Margin="250 , 5 , 0 , 0">
+			
+			<ToolTip.Tip>
+				<StackPanel>
+					<TextBlock Text="Username requirements:"/>
+					<TextBlock Text="- Length of 6 or more characters"/>
+					<TextBlock Text="- One uppercase letter"/>
+					<TextBlock Text="- One lowercase letter"/>
+					<TextBlock Text="- One digit"/>
+				</StackPanel>
+			</ToolTip.Tip>
+			
+		</Image>
+		
 
 		<Image  Grid.Row="2" Grid.RowSpan="2" 
 				Width="140" Height="140" 
@@ -93,15 +112,20 @@
 					   Foreground="White"
 					   FontSize="12">Select from PC</TextBlock>
 		</Button>
-			
-		
+
+		<TextBlock Grid.Row="4"
+				   HorizontalAlignment="Center"
+				   FontSize="15"
+				   Foreground="{Binding ErrorColor}"
+				   Text="{Binding SuccessOrErrorText}"
+				   Margin="0 , -7 , 0 , 0"></TextBlock>
 	<Button Grid.Row="4"
 					
 				HorizontalAlignment="Center"
 				VerticalAlignment="Center"
 				Height="40"
 				Margin="0 , 0 , 0 ,0"
-				
+				Command="{Binding FinishRegisterCommand}"
 				Foreground="White"
 				FontSize="18"
 				Width="150"
