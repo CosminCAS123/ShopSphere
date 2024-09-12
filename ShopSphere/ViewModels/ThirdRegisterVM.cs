@@ -26,10 +26,11 @@ namespace ShopSphere.ViewModels
         private bool isgobackvisible = true;
         private string success_or_error_text;
         private ISolidColorBrush error_color;
-        private readonly string userpfp_path = "ShopSphere/Assets/UserPFP/";
+
         
         private readonly string default_pic = "avares://ShopSphere/Assets/DefaultPFP.png";
         private string username;
+        private string image_extension;
         private bool is_error_visible;
         private Bitmap selected_image;
         public ISolidColorBrush ErrorColor { get => this.error_color; set => this.RaiseAndSetIfChanged(ref this.error_color, value); }
@@ -40,14 +41,19 @@ namespace ShopSphere.ViewModels
         public bool IsGoBackVisible { get => this.isgobackvisible; set => this.RaiseAndSetIfChanged(ref this.isgobackvisible, value); }
         public bool IsErrorVisible { get => this.is_error_visible; set => this.RaiseAndSetIfChanged(ref this.is_error_visible, value); }
         public ReactiveCommand<Unit ,Unit> FinishRegisterCommand { get; set; }
+        private string userpfp_path;
         private Stream ImageStream = null;
         private IUserRepository userRepository;
         private bool isLoading = false;
         public ThirdRegisterVM(IAuthNavigationService navigation_service , IUserRepository user_repository) : base(navigation_service)
         {
             this.userRepository = user_repository;
-           
-          
+            var projectRootPath = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, "..", "..", "..", ".."));
+
+             this.userpfp_path = Path.Combine(projectRootPath, "ShopSphere", "Assets", "UserPFP");
+
+         
+
             this.SelectImageCommand = ReactiveCommand.CreateFromTask<UserControl>(selectImageCommand);
           
             this.SelectedImage = new Bitmap(AssetLoader.Open(new Uri(default_pic))) ;
@@ -106,18 +112,21 @@ namespace ShopSphere.ViewModels
                             {
                                 //ADD PFP TO PROJECT
                                 SetUserTest();
-                                var file_name = this.Username + "pfp";
-                                var full_img_path = Path.Combine(AppContext.BaseDirectory, this.userpfp_path.Replace("/", "\\"), file_name);
+                                
+                                var file_name = $"{this.Username}pfp{this.image_extension}";
 
-                              
-                                // Create the file at the full image path
+
+                                var full_img_path = Path.Combine(userpfp_path, file_name);
+
                                 await using var fileStream = File.Create(full_img_path);
+                                
+                             
 
                                 // Ensure the image stream is at the beginning
                                 this.ImageStream.Seek(0, SeekOrigin.Begin);
 
                                 // Copy the image stream to the file
-                                await this.ImageStream.CopyToAsync(fileStream);
+                              await this.ImageStream.CopyToAsync(fileStream);
 
 
 
@@ -177,8 +186,10 @@ namespace ShopSphere.ViewModels
                 if (files.Count > 0)
                 {
                     var stream = await files[0].OpenReadAsync();
+                    
                     this.ImageStream = stream;
                     this.SelectedImage = new Bitmap(stream);
+                    this.image_extension = Path.GetExtension(files[0].Name);
                 }
             }
 
