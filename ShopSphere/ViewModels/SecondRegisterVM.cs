@@ -111,8 +111,12 @@ namespace ShopSphere.ViewModels;
             if (exists)
             {
                 this.IsPhoneNumberRegistered = true;
-                await Task.Delay(3000);
-                this.IsPhoneNumberRegistered = false;
+                _ = Task.Run(async () =>
+                {
+                    await Task.Delay(3000);
+                    this.IsPhoneNumberRegistered = false;
+                });
+               
                 return;
             }
 

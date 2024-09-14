@@ -45,6 +45,8 @@ namespace ShopSphere.ViewModels
         private Stream ImageStream = null;
         private IUserRepository userRepository;
         private bool isLoading = false;
+        private bool can_try_again;
+    //    public bool IsErrorTextVisible { get => this.is_error_visible; set => this.RaiseAndSetIfChanged(ref this.is_error_visible, value); }
         public ThirdRegisterVM(IAuthNavigationService navigation_service , IUserRepository user_repository) : base(navigation_service)
         {
             this.userRepository = user_repository;
@@ -92,10 +94,21 @@ namespace ShopSphere.ViewModels
            
 
         }*/
+     private void SetErrorText(string message , IImmutableSolidColorBrush color)
+        {
+            this.SuccessOrErrorText = message;
+            this.ErrorColor = color;
+        }
+        private void DisableErrorText() => this.SuccessOrErrorText = string.Empty;
+        private async Task wait_a_bit()
+        {
+            await Task.Delay(3000);
+            this.can_try_again = true;
+        }
         private async Task finish_register_command()
         {
-            if (!isLoading) {
-                isLoading = true;
+            if (can_try_again)
+            {
                 if (!string.IsNullOrEmpty(this.Username))
                 {
                     if (!this.IsErrorVisible)
@@ -105,28 +118,32 @@ namespace ShopSphere.ViewModels
                             //check if username exists in db
                             if (await this.userRepository.GetUserByUsernameAsync(Username) is not null) // already exists
                             {
-                                this.SuccessOrErrorText = ErrorResources.Register.UsernameAlreadyExists;
-                                this.ErrorColor = Brushes.Red;
+
+                                SetErrorText(ErrorResources.Register.UsernameAlreadyExists, Brushes.Red);
+                                //wait 3 seconds
+                                this.can_try_again = false;
+                                _ = Task.Run(wait_a_bit);
+                                return;
                             }
                             else
                             {
                                 //ADD PFP TO PROJECT
 
-                                
+
                                 var file_name = $"{this.Username}pfp{this.image_extension}";
 
 
                                 var full_img_path = Path.Combine(userpfp_path, file_name);
 
                                 await using var fileStream = File.Create(full_img_path);
-                                
-                             
+
+
 
                                 // Ensure the image stream is at the beginning
                                 this.ImageStream.Seek(0, SeekOrigin.Begin);
 
                                 // Copy the image stream to the file
-                              await this.ImageStream.CopyToAsync(fileStream);
+                                await this.ImageStream.CopyToAsync(fileStream);
 
 
 
@@ -140,19 +157,20 @@ namespace ShopSphere.ViewModels
                                 await this.userRepository.AddUserAsync(navigationService.RegisteredUser);
 
                                 //Show user registered 
-                                this.ErrorColor = Brushes.YellowGreen;
-                                this.SuccessOrErrorText = ErrorResources.Register.RegisteredSuccessfully;
+                                SetErrorText(ErrorResources.Register.RegisteredSuccessfully, Brushes.YellowGreen);
+                                this.can_try_again = false;
+                              
                             }
                         }
                         else //image not entered
                         {
-                            
+
                             this.SuccessOrErrorText = "You must select a profile picture.";
                             this.ErrorColor = Brushes.Red;
                         }
-                        
+
                     }
-                    
+
                     else //invalid username 
                     {
                         this.SuccessOrErrorText = "Username has invalid format.";
@@ -163,9 +181,9 @@ namespace ShopSphere.ViewModels
                 {
                     this.SuccessOrErrorText = "Username cannot be empty.";
                     this.ErrorColor = Brushes.Red;
-                } 
+                }
 
-                isLoading = false;
+
             }
         }
         private async Task selectImageCommand(UserControl registerView)

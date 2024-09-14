@@ -63,7 +63,7 @@ namespace ShopSphere.ViewModels
         public RegisterVM(IAuthNavigationService navigationService , IUserRepository userRepository , IPasswordHashService passwordHashService) : base(navigationService) 
         {
             this.password_hash_service = passwordHashService;
-            this.NextRegisterCommand = ReactiveCommand.CreateFromTask(goToSecondRegister) ;
+            this.NextRegisterCommand = ReactiveCommand.CreateFromTask(goToSecondRegister, Observable.Return(true)) ;
             this.user_repository = userRepository;
             this.IsEmailErrorVisible = false;
             SetFieldObservables();
@@ -256,9 +256,15 @@ namespace ShopSphere.ViewModels
             if (exists)//make email error visible for 3 seconds
             {
                 this.IsEmailErrorVisible = true;
-                await Task.Delay(3000);
-                this.IsEmailErrorVisible = false;
-                return;
+
+               
+                _ = Task.Run(async () =>
+                {
+                    await Task.Delay(3000);
+                    this.IsEmailErrorVisible = false;
+                });
+
+                return; 
             }
 
 
