@@ -7,47 +7,54 @@
 			 Background="{StaticResource CharcoalGrayColor}"
              x:Class="ShopSphere.Views.ThirdRegisterAccountView"
 			 x:Name="ThisUserControl"
-			 x:DataType="vm:ThirdRegisterVM">
+			 
+			 x:DataType="vm:ThirdRegisterVM"
+			 >
 
-	<Grid RowDefinitions="70 , 40 , * , * ,  80">
-		<Grid.Styles>
+
+	<Grid>
+		<ContentControl Content="{Binding GridControl , Mode=OneWayToSource}">
+		<Grid RowDefinitions="70 , 40 , * , * ,  80"
+			  
+			  >
+
 			
-		</Grid.Styles>
 
-		<Button Grid.Row="0"
-				  VerticalAlignment="Top"
-				  HorizontalAlignment="Left"
-				  VerticalContentAlignment="Center"
-				  HorizontalContentAlignment="Center"
-				  Width="110"
-			Command="{Binding GoBackCommand}"
-				Content="Go Back"
-				  Height="30"
-				  Foreground="White">
-			<Button.Background>
-				<LinearGradientBrush StartPoint="0,0" EndPoint="100,0">
-					<GradientStop Color="#4682B4" Offset="0"/>
-					<!-- Steel Blue -->
-					<GradientStop Color="#1E4C79" Offset="1"/>
-					<!-- Darker Blue for stronger contrast -->
-				</LinearGradientBrush>
-			</Button.Background>
-		</Button>
-		<TextBlock Grid.Row="0" Foreground="White" FontSize="17" HorizontalAlignment="Center"
-				   VerticalAlignment="Bottom"
-				   Margin="0 , 0 , 0 , 10"
+			<Button Grid.Row="0"
+					  VerticalAlignment="Top"
+					  HorizontalAlignment="Left"
+					  VerticalContentAlignment="Center"
+					  HorizontalContentAlignment="Center"
+					  Width="110"
+				Command="{Binding GoBackCommand}"
+					Content="Go Back"
+					  Height="30"
+					  Foreground="White">
+				<Button.Background>
+					<LinearGradientBrush StartPoint="0,0" EndPoint="100,0">
+						<GradientStop Color="#4682B4" Offset="0"/>
+						<!-- Steel Blue -->
+						<GradientStop Color="#1E4C79" Offset="1"/>
+						<!-- Darker Blue for stronger contrast -->
+					</LinearGradientBrush>
+				</Button.Background>
+			</Button>
+			<TextBlock Grid.Row="0" Foreground="White" FontSize="17" HorizontalAlignment="Center"
+					   VerticalAlignment="Bottom"
+				   
+					   Margin="0 , 0 , 0 , 10"
 				   >
-			<Run>One more thing and you're done! Select your </Run>
-			<Run Foreground="{StaticResource TomatoColor}"
+				<Run>One more thing and you're done! Select your </Run>
+				<Run Foreground="{StaticResource TomatoColor}"
 				
-				 FontWeight="Bold"> profile picture</Run>
-			<Run>and</Run>
-			<Run Foreground="{StaticResource TomatoColor}"
+					 FontWeight="Bold"> profile picture</Run>
+				<Run>and</Run>
+				<Run Foreground="{StaticResource TomatoColor}"
 				
-				 FontWeight="Bold">username</Run>
-			<Run>:</Run>
-		</TextBlock>
-		
+					 FontWeight="Bold">username</Run>
+				<Run>:</Run>
+			</TextBlock>
+
 			<TextBlock Foreground="White"
 					   Grid.Row="1"
 					   VerticalAlignment="Center"
@@ -63,82 +70,111 @@
 					 Watermark="Type here"
 					 VerticalContentAlignment="Center"
 					 Height="35">
-				
+
 			</TextBox>
-		<Image Grid.Row="1" Width="22" Height="22"
-			   Source="avares://ShopSphere/Assets/InvalidField.png"
-			   IsVisible="{Binding IsErrorVisible}"
-			   Margin="250 , 5 , 0 , 0">
-			
-			<ToolTip.Tip>
-				<StackPanel>
-					<TextBlock Text="Username requirements:"/>
-					<TextBlock Text="- Length of 6 or more characters"/>
-					<TextBlock Text="- One uppercase letter"/>
-					<TextBlock Text="- One lowercase letter"/>
-					<TextBlock Text="- One digit"/>
-				</StackPanel>
-			</ToolTip.Tip>
-			
-		</Image>
-		
+			<Image Grid.Row="1" Width="22" Height="22"
+				   Source="avares://ShopSphere/Assets/InvalidField.png"
+				   IsVisible="{Binding IsErrorVisible}"
+				   Margin="250 , 5 , 0 , 0">
 
-		<Image  Grid.Row="2" Grid.RowSpan="2" 
-				Width="140" Height="140" 
-				Source="{Binding SelectedImage}"
-				Stretch="UniformToFill">
-			<Image.Clip>
-				<EllipseGeometry Center="70,70" RadiusX="70" RadiusY="70"/>
-			</Image.Clip>
-		</Image>
-		<Button Grid.Row="2"
-				Command="{Binding SelectImageCommand }"
-				CommandParameter="{Binding ElementName=ThisUserControl}"
-				Grid.RowSpan="2"
-				HorizontalAlignment="Right"
-				Width="120"
-				Height="30"
-				Margin="0 , 0 , 100 , 0">
-			<Button.Background>
-				<LinearGradientBrush StartPoint="0,0" EndPoint="70,0">
-					<GradientStop Color="#FF6347" Offset="0"/>
-					<!-- Tomato -->
-					<GradientStop Color="#CD4F39" Offset="1"/>
-					<!-- Darker reddish tone for contrast -->
-				</LinearGradientBrush>
-			</Button.Background>
-			<TextBlock HorizontalAlignment="Center"
-					   VerticalAlignment="Center"
-					   Foreground="White"
-					   FontSize="12">Select from PC</TextBlock>
-		</Button>
+				<ToolTip.Tip>
+					<StackPanel>
+						<TextBlock Text="Username requirements:"/>
+						<TextBlock Text="- Length of 6 or more characters"/>
+						<TextBlock Text="- One uppercase letter"/>
+						<TextBlock Text="- One lowercase letter"/>
+						<TextBlock Text="- One digit"/>
+					</StackPanel>
+				</ToolTip.Tip>
 
-		<TextBlock Grid.Row="4"
-				   HorizontalAlignment="Center"
-				   FontSize="15"
-				   Foreground="{Binding ErrorColor}"
-				   Text="{Binding SuccessOrErrorText}"
-				   Margin="0 , -7 , 0 , 0"></TextBlock>
-	<Button Grid.Row="4"
+			</Image>
+
+
+			<Image  Grid.Row="2" Grid.RowSpan="2"
+					Width="140" Height="140"
+					Source="{Binding SelectedImage}"
+					Stretch="UniformToFill">
+				<Image.Clip>
+					<EllipseGeometry Center="70,70" RadiusX="70" RadiusY="70"/>
+				</Image.Clip>
+			</Image>
+			<Button Grid.Row="2"
+					Command="{Binding SelectImageCommand }"
+					CommandParameter="{Binding ElementName=ThisUserControl}"
+					Grid.RowSpan="2"
+					HorizontalAlignment="Right"
+					Width="120"
+					Height="30"
+					Margin="0 , 0 , 100 , 0">
+				<Button.Background>
+					<LinearGradientBrush StartPoint="0,0" EndPoint="70,0">
+						<GradientStop Color="#FF6347" Offset="0"/>
+						<!-- Tomato -->
+						<GradientStop Color="#CD4F39" Offset="1"/>
+						<!-- Darker reddish tone for contrast -->
+					</LinearGradientBrush>
+				</Button.Background>
+				<TextBlock HorizontalAlignment="Center"
+						   VerticalAlignment="Center"
+						   Foreground="White"
+						   FontSize="12">Select from PC</TextBlock>
+			</Button>
+
+			<TextBlock Grid.Row="4"
+					   HorizontalAlignment="Center"
+					   FontSize="15"
+					   Foreground="{Binding ErrorColor}"
+					   Text="{Binding SuccessOrErrorText}"
+					   Margin="0 , -7 , 0 , 0"></TextBlock>
+			<Button Grid.Row="4"
 					
-				HorizontalAlignment="Center"
-				VerticalAlignment="Center"
-				Height="40"
-				Margin="0 , 0 , 0 ,0"
-				Command="{Binding FinishRegisterCommand}"
-				Foreground="White"
-				FontSize="18"
-				Width="150"
+						HorizontalAlignment="Center"
+						VerticalAlignment="Center"
+						Height="40"
+						Margin="0 , 0 , 0 ,0"
+						Command="{Binding FinishRegisterCommand}"
+						Foreground="White"
+						FontSize="18"
+						Width="150"
 				>
+				<Button.Background>
+					<LinearGradientBrush StartPoint="0,0" EndPoint="140,0">
+						<GradientStop Color="#4682B4" Offset="0"/>
+						<!-- Steel Blue -->
+						<GradientStop Color="#1E4C79" Offset="1"/>
+						<!-- Darker Blue for stronger contrast -->
+					</LinearGradientBrush>
+				</Button.Background>
+				<TextBlock Text="Register" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"/>
+			</Button>
+
+		</Grid>
+		</ContentControl>
+		
+		
+		<Button 
+							Command="{Binding BackToLoginCommand}"
+							HorizontalAlignment="Right"
+							Width="100"
+							Margin="0 , 0 , 20 , 10"
+				VerticalAlignment="Bottom"
+				            IsVisible="{Binding IsDoneVisible}"
+				    
+							Height="30">
+
 			<Button.Background>
-				<LinearGradientBrush StartPoint="0,0" EndPoint="140,0">
-					<GradientStop Color="#4682B4" Offset="0"/>
+				<LinearGradientBrush StartPoint="0,0" EndPoint="92,0">
+					<GradientStop Color="#FF6347" Offset="0"/>
 					<!-- Steel Blue -->
-					<GradientStop Color="#1E4C79" Offset="1"/>
+					<GradientStop Color="#993A29" Offset="1"/>
 					<!-- Darker Blue for stronger contrast -->
 				</LinearGradientBrush>
 			</Button.Background>
-			<TextBlock Text="Register" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"/>
+			<TextBlock Text="Done" HorizontalAlignment="Center"
+					   FontWeight="Bold"
+					       
+					   
+					   VerticalAlignment="Center" Foreground="White"/>
 		</Button>
 	</Grid>
 </UserControl>
