@@ -98,7 +98,8 @@ namespace ShopSphere.ViewModels;
             !string.IsNullOrEmpty(this.PinThree) &&
             !string.IsNullOrEmpty(this.PinFour) &&
             this.PhoneNumberNoPrefix.Length.ToString() == this.MaxDigits
-            && !this.IsPhoneNumberRegistered)
+            && !this.IsPhoneNumberRegistered &&
+            this.PhoneNumberNoPrefix.All(char.IsDigit))
         {
             //add to registered user
             //go to third register
@@ -115,7 +116,7 @@ namespace ShopSphere.ViewModels;
                 {
                     await Task.Delay(3000);
                     this.IsPhoneNumberRegistered = false;
-                });
+                }); 
                
                 return;
             }
