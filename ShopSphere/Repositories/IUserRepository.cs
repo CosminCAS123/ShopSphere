@@ -11,7 +11,7 @@ namespace ShopSphere.Repositories
     {
         Task<User> GetUserByUsernameAsync(string username);
         Task AddUserAsync(User user);
-
+        Task<User> GetUserByEmailAsync(string email);
         Task<bool> IsEmailRegisteredAsync(string email);
         Task<bool> IsPhoneNumberRegisteredAsync(string phoneNumber);
     }

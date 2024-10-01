@@ -188,12 +188,28 @@ namespace ShopSphere.ViewModels
                 Subscribe(x =>
                 {
                     var emailadress = x;
-                    if (string.IsNullOrEmpty(emailadress)) { DisableMark(3); return; }
+                    var validation = FieldVerification.EmailAdressFormat(emailadress);
+                    switch (validation)
+                    {
+                        case ErrorResources.Register.EmptyField:
+                            DisableMark(3);
+                            return;
+                         
+                        case ErrorResources.Register.InvalidEmailAdress:
+                            EnableMark(3, validation);
+                            return;
+                        case ErrorResources.Register.GoodField:
+                            DisableMark(3);
+                            return;
 
-                    string pattern = @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$";
-                    if (!Regex.IsMatch(emailadress, pattern)) { EnableMark(3, ErrorResources.Register.InvalidEmailAdress); return; }
 
-                    DisableMark(3);
+
+
+                    }
+                    
+                   
+
+                   
 
 
                 });
@@ -201,16 +217,27 @@ namespace ShopSphere.ViewModels
             var ageobservable = this.WhenAnyValue(x => x.Age).
                 Subscribe(x =>
                 {
+                    var validation = FieldVerification.AgeFormat(x);
+                    switch (validation)
+                    {
+                        case ErrorResources.Register.EmptyField:
+                            DisableMark(4);
+                            return;
+                        case ErrorResources.Register.OnlyDigits:
+                            EnableMark(4, validation);
+                            return;
+                        case ErrorResources.Register.AgeLimitBottom:
+                            EnableMark(4, validation);
+                            return;
+                        case ErrorResources.Register.GoodField:
+                            DisableMark(4);
+                            return;
+
+                    }
+                  
                     
-                    if (string.IsNullOrEmpty(x)) {  DisableMark(4); return; }
-                    if (!x.All(char.IsDigit)) { EnableMark(4, ErrorResources.Register.OnlyDigits);return; }
 
-                    var age = int.Parse(x);
-
-                    if (age < 18) { EnableMark(4, ErrorResources.Register.AgeLimitBottom); return; }
-
-
-                    DisableMark(4);
+                  
                     
 
                 });
@@ -218,26 +245,33 @@ namespace ShopSphere.ViewModels
             var passwordobservable = this.WhenAnyValue(x => x.Password).
                 Subscribe(x =>
                 {
-                    if (string.IsNullOrEmpty(x)) { DisableMark(5);return; }
-                    /*  -one uppercase letter
-                     *  -min length
-                     *  -one lowercase letter
-                     *  -one special character
-                     *  -one digit
-                     
-                     */
 
-                    var pass = x;
-                    if (pass.Length < 6) { EnableMark(5, ErrorResources.Register.PasswordLength); return; }
-                    if (!pass.Any(char.IsUpper)) { EnableMark(5, ErrorResources.Register.UpperCaseLetter); return; }
-                    if (!pass.Any(char.IsLower)) { EnableMark(5, ErrorResources.Register.LowerCaseLetter);return; }
-                    if (!pass.Any(char.IsDigit)) { EnableMark(5 , ErrorResources.Register.AtLeastOneDigit); return; }
-                    string specialCharPattern = @"[!@#$%^&*()_+\-=\[\]{}|\\:;""',.<>?/]";
-
-                    bool containsSpecialChar = Regex.IsMatch(pass, specialCharPattern);
-
-                    if (!Regex.IsMatch(pass, specialCharPattern)) { EnableMark(5 , ErrorResources.Register.PasswordSpecialCharacters); return; }
-                    DisableMark(5);
+                    var validation = FieldVerification.PasswordFormat(x);
+                    switch (validation)
+                    {
+                        case ErrorResources.Register.EmptyField:
+                            DisableMark(5);
+                            return;
+                        case ErrorResources.Register.PasswordLength:
+                            EnableMark(5, validation);
+                            return;
+                        case ErrorResources.Register.UpperCaseLetter:
+                            EnableMark(5, validation);
+                            return;
+                        case ErrorResources.Register.LowerCaseLetter:
+                            EnableMark(5, validation);
+                            return;
+                        case ErrorResources.Register.AtLeastOneDigit:
+                            EnableMark(5, validation);
+                            return;
+                        case ErrorResources.Register.PasswordSpecialCharacters:
+                            EnableMark(5, validation);
+                            return;
+                        case ErrorResources.Register.GoodField:
+                            DisableMark(5);
+                            return;
+                    }
+                   
                     
                 });
         }

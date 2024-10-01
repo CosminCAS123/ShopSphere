@@ -28,13 +28,15 @@ namespace ShopSphere.ViewModels
        
         public ReactiveCommand<Unit, Unit> GoToFirstRegisterCommand { get; set; }
 
-
+        public ReactiveCommand<Unit , Unit> GoToForgotPasswordCommand { get; set; }
         public LoginVM(IAuthNavigationService navigationService) : base(navigationService) { 
 
           
             this.GoToFirstRegisterCommand = ReactiveCommand.CreateFromTask(goToFirstRegister);
+            this.GoToForgotPasswordCommand = ReactiveCommand.CreateFromTask(goToForgotPassword);
         }
         private async Task goToFirstRegister() =>  navigationService.AuthNavigateTo<RegisterVM>();
+        private async Task goToForgotPassword() => navigationService.AuthNavigateTo<ForgotPasswordVM>();
         
         
                             

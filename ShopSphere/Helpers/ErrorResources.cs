@@ -11,6 +11,7 @@ namespace ShopSphere.Helpers
     {
         public static class Register
         {
+            public const string GoodField = "This field is good to go.";
             public const string EmptyField = "This field can't be empty.";
             public const string UppercaseStart = "This field must start with uppercase.";
             public const string OnlyLetters = "This field must only contain letters.";
@@ -29,7 +30,9 @@ namespace ShopSphere.Helpers
             public const string OnlyDigits = "This field must only contain digits";
             public const string AtLeastOneDigit = "This field must contain at least one digit";
             public const string LowerCaseLetter = "This field must contain at least one lowercase letter";
-
+            public const string PinLength = "Security PIN must be 4-digit.";
+            public const string EmailAdressNotFound = "This email adress was not registered yet.";
+            public const string PinDoesNotMatch = "The security pin is incorrect.";
 
         
         }

@@ -40,5 +40,11 @@ namespace ShopSphere.Repositories
             bool is_registered = await this.context.Users.AnyAsync(user => user.PhoneNumber == phoneNumber);
             return is_registered;
         }
+
+        public async Task<User?> GetUserByEmailAsync(string email)
+        {
+            var user = await this.context.Users.FirstOrDefaultAsync(x => x.EmailAdress == email);
+            return user;
+        }
     }
 }

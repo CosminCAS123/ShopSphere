@@ -132,6 +132,12 @@ xmlns:ia="clr-namespace:Avalonia.Xaml.Interactions.Core;assembly=Avalonia.Xaml.I
 				   Margin="40 , 0 , 0 , 20"
 				   
 				   Grid.ColumnSpan="2">
+			<i:Interaction.Behaviors>
+				<ia:EventTriggerBehavior EventName="PointerPressed">
+					<InvokeCommandAction x:DataType="vm:LoginVM"
+										 Command="{Binding GoToForgotPasswordCommand}"></InvokeCommandAction>
+				</ia:EventTriggerBehavior>
+			</i:Interaction.Behaviors>
 			<TextBlock.Styles>
 				<Style Selector="TextBlock">
 					<Setter Property="Foreground" Value="White"></Setter>

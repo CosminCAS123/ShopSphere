@@ -16,6 +16,9 @@
        >
 	<ContentControl Content="{Binding AuthContent}">
 		<ContentControl.DataTemplates>
+			<DataTemplate x:DataType="vm:ForgotPasswordVM">
+				<views:ForgotPasswordView></views:ForgotPasswordView>
+			</DataTemplate>
 			<DataTemplate x:DataType="vm:LoginVM">
 				<views:LoginView></views:LoginView>
 			</DataTemplate>
