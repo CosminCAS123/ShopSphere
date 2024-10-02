@@ -21,7 +21,7 @@ namespace ShopSphere.ViewModels
         private string email;
         private string pin;
         private const string PASS_CHANGED_SUCCESSFULLY = "Password was changed successfully!";
-        private IEmailSenderService emailSenderService;
+        
         private string error_message;
         private const int error_duration = 2000;
         private IUserRepository userRepository;
@@ -46,11 +46,11 @@ namespace ShopSphere.ViewModels
         public ReactiveCommand<Unit , Unit> SendPasswordCommand { get; set; }
         public string  EmailAdress { get => this.email; set => this.RaiseAndSetIfChanged(ref this.email , value); }
         public string PIN { get => this.pin; set => this.RaiseAndSetIfChanged(ref this.pin, value); }
-        public ForgotPasswordVM(IAuthNavigationService navigationService , IUserRepository user_repository  , IEmailSenderService emailsenderservice , IPasswordHashService hashservice) : base(navigationService)
+        public ForgotPasswordVM(IAuthNavigationService navigationService , IUserRepository user_repository , IPasswordHashService hashservice) : base(navigationService)
         {
             this.userRepository = user_repository;
             this.SendPasswordCommand = ReactiveCommand.CreateFromTask(sendPassword_cmd);
-            this.emailSenderService = emailsenderservice;
+           
             this.ErrorMessage = string.Empty;
             this.ShowPasswordTextbox = false;
             this.ShowInitialTextbox = true;

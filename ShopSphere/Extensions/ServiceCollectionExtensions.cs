@@ -25,7 +25,7 @@ namespace ShopSphere.Extensions
             collection.AddScoped<ThirdRegisterVM>();
             collection.AddTransient<IPasswordHashService, PasswordHashService>();
             collection.AddTransient<ForgotPasswordVM>();
-            collection.AddTransient<IEmailSenderService, EmailSenderService>();
+          
             }
         }
     
