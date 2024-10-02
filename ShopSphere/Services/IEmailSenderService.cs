@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace ShopSphere.Services
 {
-    internal interface IEmailSenderService
+    public interface IEmailSenderService
     {
+        Task<string> SendEmailAsync(string email , string subject , string body);
+
     }
 }

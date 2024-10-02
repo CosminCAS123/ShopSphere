@@ -64,5 +64,13 @@ namespace ShopSphere.Helpers
 
             return ErrorResources.Register.GoodField;
         }
+
+        public static string PinFormat(string pin)
+        {
+            if (string.IsNullOrEmpty(pin))return ErrorResources.Register.EmptyField;
+            if (!pin.All(char.IsDigit)) return ErrorResources.Register.OnlyDigits;
+            if (pin.Length != 4) return ErrorResources.Register.PinLength;
+            return ErrorResources.Register.GoodField;
+        }
     }
 }

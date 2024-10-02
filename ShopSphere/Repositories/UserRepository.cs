@@ -46,5 +46,11 @@ namespace ShopSphere.Repositories
             var user = await this.context.Users.FirstOrDefaultAsync(x => x.EmailAdress == email);
             return user;
         }
+
+        public async Task ChangeUserPassword(User user, string hash)
+        {
+            user.PasswordHash = hash;
+            await this.context.SaveChangesAsync();
+        }
     }
 }
